@@ -161,6 +161,21 @@ export async function getConnections(userId) {
   return connections;
 }
 
+export async function getConnectionStatus(fromUserId, toUserId) {
+  if (!fromUserId || !toUserId || fromUserId === toUserId) return 'self';
+  
+  const connectedSnap = await get(ref(db, `user_connections/${fromUserId}/${toUserId}`));
+  if (connectedSnap.exists()) return 'connected';
+  
+  const sentSnap = await get(ref(db, `requests/${toUserId}/${fromUserId}`));
+  if (sentSnap.exists()) return 'pending';
+  
+  const receivedSnap = await get(ref(db, `requests/${fromUserId}/${toUserId}`));
+  if (receivedSnap.exists()) return 'received';
+  
+  return 'none';
+}
+
 export async function getAllUsers(pageSize = 50) {
   const snap = await get(query(ref(db, 'users'), limitToLast(pageSize)));
   const users = [];
@@ -300,4 +315,28 @@ export async function getComments(postId, authorId) {
     }
   }
   return comments.sort((a, b) => a.createdAt - b.createdAt);
+}
+
+// ========== DEVELOPER PROJECTS ==========
+export async function getProjects(userId) {
+  if (!userId) return [];
+  const snap = await get(ref(db, `users/${userId}/projects`));
+  const projects = [];
+  if (snap.exists()) {
+    for (const [key, val] of Object.entries(snap.val())) {
+      projects.push({ id: key, ...val });
+    }
+  }
+  return projects.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+}
+
+export async function deleteProject(userId, projectId) {
+  try {
+    const projectRef = ref(db, `users/${userId}/projects/${projectId}`);
+    await remove(projectRef);
+    return true;
+  } catch (err) {
+    console.error('Error deleting project directly:', err);
+    return false;
+  }
 }

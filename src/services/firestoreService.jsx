@@ -1,9 +1,9 @@
-import { 
+import {
   collection, doc, getDoc, getDocs, addDoc, setDoc, updateDoc, deleteDoc,
   query, where, orderBy, limit, startAfter, increment, serverTimestamp,
   arrayUnion, arrayRemove, onSnapshot
 } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { db } from '../firebase';
 
 // ========== USERS ==========
 export async function getUser(uid) {
@@ -36,13 +36,13 @@ export async function createPost(postData) {
     repostsCount: 0,
     createdAt: serverTimestamp()
   });
-  
+
   // Increment author's post count
   const authorCollection = postData.authorType === 'company' ? 'companies' : 'users';
   await updateDoc(doc(db, authorCollection, postData.authorId), {
     postsCount: increment(1)
   });
-  
+
   return ref.id;
 }
 
@@ -80,7 +80,7 @@ export async function recalculateTrustScore(uid) {
   try {
     const response = await fetch(`/api/trust/calculate/${uid}`, { method: 'POST' });
     if (response.ok) {
-        return await response.json();
+      return await response.json();
     }
     throw new Error('Trust calculation failed');
   } catch (err) {
@@ -93,7 +93,7 @@ export async function likePost(postId, userId) {
   const likeId = `${postId}_${userId}`;
   const likeRef = doc(db, 'posts_likes', likeId);
   const existing = await getDoc(likeRef);
-  
+
   if (existing.exists()) {
     await deleteDoc(likeRef);
     await updateDoc(doc(db, 'posts', postId), { likesCount: increment(-1) });
@@ -158,14 +158,14 @@ export async function createJob(jobData) {
 
 export async function getJobs(filters = {}, pageSize = 20) {
   let constraints = [orderBy('createdAt', 'desc'), limit(pageSize)];
-  
+
   if (filters.companyId) {
     constraints.unshift(where('companyId', '==', filters.companyId));
   }
   if (filters.status) {
     constraints.unshift(where('status', '==', filters.status));
   }
-  
+
   const q = query(collection(db, 'jobs'), ...constraints);
   const snap = await getDocs(q);
   return snap.docs.map(d => ({ jobId: d.id, ...d.data() }));
@@ -244,9 +244,9 @@ export async function registerForEvent(eventId, userId) {
   const regId = `${eventId}_${userId}`;
   const regRef = doc(db, 'event_registrations', regId);
   const existing = await getDoc(regRef);
-  
+
   if (existing.exists()) throw new Error('Already registered');
-  
+
   await setDoc(regRef, {
     eventId,
     userId,
@@ -275,7 +275,7 @@ export async function sendConnectionRequest(fromUserId, toUserId) {
     where('fromUserId', '==', toUserId),
     where('toUserId', '==', fromUserId)
   );
-  
+
   const [snap1, snap2] = await Promise.all([getDocs(q1), getDocs(q2)]);
   if (!snap1.empty || !snap2.empty) throw new Error('Connection already exists');
 
@@ -293,12 +293,12 @@ export async function acceptConnection(connectionId, userId) {
   const connRef = doc(db, 'connections', connectionId);
   const snap = await getDoc(connRef);
   if (!snap.exists()) throw new Error('Connection not found');
-  
+
   const conn = snap.data();
   if (conn.toUserId !== userId) throw new Error('Unauthorized');
-  
+
   await updateDoc(connRef, { status: 'accepted', updatedAt: serverTimestamp() });
-  
+
   // Increment connection counts for both users
   await updateDoc(doc(db, 'users', conn.fromUserId), { connectionsCount: increment(1) });
   await updateDoc(doc(db, 'users', conn.toUserId), { connectionsCount: increment(1) });
@@ -309,7 +309,7 @@ export async function rejectConnection(connectionId, userId) {
   const snap = await getDoc(connRef);
   if (!snap.exists()) throw new Error('Connection not found');
   if (snap.data().toUserId !== userId) throw new Error('Unauthorized');
-  
+
   await updateDoc(connRef, { status: 'rejected', updatedAt: serverTimestamp() });
 }
 
@@ -324,13 +324,13 @@ export async function getConnections(userId) {
     where('toUserId', '==', userId),
     where('status', '==', 'accepted')
   );
-  
+
   const [snap1, snap2] = await Promise.all([getDocs(q1), getDocs(q2)]);
-  
+
   const connections = [];
   snap1.docs.forEach(d => connections.push({ connectionId: d.id, connectedUserId: d.data().toUserId, ...d.data() }));
   snap2.docs.forEach(d => connections.push({ connectionId: d.id, connectedUserId: d.data().fromUserId, ...d.data() }));
-  
+
   return connections;
 }
 

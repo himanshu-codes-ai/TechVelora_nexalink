@@ -12,19 +12,26 @@ def initialize_firebase():
     if not firebase_admin._apps:
         cred_path = os.path.join(os.path.dirname(__file__), '..', 'serviceAccountKey.json')
         
-        if os.path.exists(cred_path):
-            cred = credentials.Certificate(cred_path)
-            firebase_admin.initialize_app(cred, {
-                'databaseURL': 'https://hirex-d80c6-default-rtdb.firebaseio.com'
-            })
-        else:
-            try:
+        try:
+            if os.path.exists(cred_path):
+                print(f"DEBUG: Initializing Firebase with {cred_path}")
+                cred = credentials.Certificate(cred_path)
+                firebase_admin.initialize_app(cred, {
+                    'databaseURL': 'https://hirex-d80c6-default-rtdb.firebaseio.com'
+                })
+            else:
+                print("WARNING: serviceAccountKey.json missing. Attempting default credentials...")
+                # Attempt to initialize without explicit creds (will only work if gcloud auth is set)
                 firebase_admin.initialize_app(None, {
                     'databaseURL': 'https://hirex-d80c6-default-rtdb.firebaseio.com'
                 })
-            except Exception as e:
-                print(f"Warning: Firebase Admin not initialized: {e}")
+        except Exception as e:
+            print(f"CRITICAL ERROR: Firebase Admin failed to initialize: {e}")
+            return None
 
-    return db_admin.reference()
+    try:
+        return db_admin.reference()
+    except:
+        return None
 
 db = initialize_firebase()

@@ -55,7 +55,12 @@ export default function CreatePostModal({ isOpen, onClose, onPostCreated }) {
     try {
       let mediaUrl = '';
       if (mediaFile) {
-        mediaUrl = await uploadPostMedia(currentUser.uid, mediaFile);
+        mediaUrl = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+          reader.readAsDataURL(mediaFile);
+        });
       }
 
       const isCompany = userProfile?.role === 'company';

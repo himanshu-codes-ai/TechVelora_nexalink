@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from routers import trust, feed
+from routers import trust, feed, projects
 import time
 
 app = FastAPI(title="Nexalink Social OS API")
@@ -27,6 +27,7 @@ async def add_process_time_header(request: Request, call_next):
 # Include Routers
 app.include_router(trust.router, prefix="/api")
 app.include_router(feed.router, prefix="/api")
+app.include_router(projects.router, prefix="/api")
 
 @app.get("/")
 async def root():

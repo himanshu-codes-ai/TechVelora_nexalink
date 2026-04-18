@@ -1,27 +1,102 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { getProjects, deleteProject, getUser, getConnectionStatus, sendConnectionRequest, acceptConnection } from '../services/realtimeService';
+import { recalculateTrustScore } from '../services/trustService';
 import Avatar from '../components/shared/Avatar';
 import TrustBadge from '../components/shared/TrustBadge';
 import TrustScoreWidget from '../components/trust/TrustScoreWidget';
 import Modal from '../components/shared/Modal';
+import UploadProjectModal from '../components/profile/UploadProjectModal';
 
 export default function ProfilePage() {
-  const { userProfile, updateUserProfile, isCompany } = useAuth();
+  const { userId } = useParams();
+  const { currentUser, userProfile: myProfile, updateUserProfile, isCompany, fetchUserProfile } = useAuth();
   const navigate = useNavigate();
+  
+  const [profile, setProfile] = useState(null);
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState('none');
   const [editing, setEditing] = useState(false);
   const [editData, setEditData] = useState({});
   const [activeTab, setActiveTab] = useState('about');
   const [saving, setSaving] = useState(false);
   const [eduInput, setEduInput] = useState({ school: '', degree: '', year: '' });
+  const [projects, setProjects] = useState([]);
+  const [uploadProjectOpen, setUploadProjectOpen] = useState(false);
 
-  if (!userProfile) {
+  useEffect(() => {
+    async function loadProfile() {
+      const targetId = userId || currentUser?.uid;
+      const isSelf = !userId || userId === currentUser?.uid;
+      setIsOwnProfile(isSelf);
+
+      if (isSelf) {
+        setProfile(myProfile);
+        if (myProfile?.uid) {
+          getProjects(myProfile.uid).then(setProjects).catch(console.error);
+        }
+      } else {
+        try {
+          const u = await getUser(targetId);
+          setProfile(u);
+          if (u) {
+            getProjects(u.uid).then(setProjects).catch(console.error);
+            const status = await getConnectionStatus(currentUser.uid, u.uid);
+            setConnectionStatus(status);
+          }
+        } catch (err) {
+          console.error('Error loading external profile:', err);
+        }
+      }
+    }
+    loadProfile();
+  }, [userId, myProfile, currentUser]);
+
+  if (!profile) {
     return <div className="page-full text-center p-5 text-muted">Loading profile...</div>;
   }
 
+  const handleConnect = async () => {
+    try {
+      await sendConnectionRequest(currentUser.uid, profile.uid);
+      setConnectionStatus('pending');
+    } catch (err) {
+      console.error('Connection request error:', err);
+    }
+  };
+
+  const handleAccept = async () => {
+    try {
+      await acceptConnection(profile.uid, currentUser.uid);
+      setConnectionStatus('connected');
+    } catch (err) {
+      console.error('Accept error:', err);
+    }
+  };
+
+  async function handleDeleteProject(e, projectId) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    // Direct deletion as requested, no confirm prompt
+    try {
+      const success = await deleteProject(currentUser.uid, projectId);
+      if (success) {
+        setProjects(prev => prev.filter(p => p.id !== projectId));
+      } else {
+        alert('Could not reach the database to delete this project.');
+      }
+    } catch (err) {
+      console.error('Direct delete error:', err);
+    }
+  }
+
   function openEdit() {
-    setEditData({ ...userProfile, education: userProfile.education || [], skills: userProfile.skills || [] });
+    setEditData({ ...profile, education: profile.education || [], skills: profile.skills || [] });
     setEditing(true);
   }
 
@@ -30,6 +105,10 @@ export default function ProfilePage() {
     try {
       const { uid, createdAt, updatedAt, ...data } = editData;
       await updateUserProfile(data);
+      // Trigger trust score recalculation on profile update
+      await recalculateTrustScore(currentUser.uid);
+      // Fetch fresh profile from RTDB to show updated trust score immediately
+      if (fetchUserProfile) await fetchUserProfile(currentUser.uid);
       setEditing(false);
     } catch (err) {
       console.error('Error saving profile:', err);
@@ -85,8 +164,8 @@ export default function ProfilePage() {
         <div style={{ height: 200, background: 'linear-gradient(135deg, #2563EB, #7C3AED)', position: 'relative' }}>
           <div style={{ position: 'absolute', bottom: -50, left: 32, borderRadius: '50%', border: '4px solid var(--color-surface)', background: 'var(--color-surface)' }}>
             <Avatar 
-              src={isCompany ? userProfile.logoUrl : userProfile.avatarUrl}
-              name={userProfile.name} 
+              src={profile.avatarUrl || profile.logoUrl}
+              name={profile.name} 
               size="2xl" 
             />
           </div>
@@ -96,27 +175,50 @@ export default function ProfilePage() {
           <div className="flex justify-between items-start">
             <div>
               <h1 style={{ fontSize: '24px', fontWeight: 700, margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
-                {userProfile.name}
-                <TrustBadge badge={userProfile.trustBadge || 'NEW'} size="md" />
+                {profile.name}
+                {profile.trustScore === 100 && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'var(--color-primary)' }}>
+                    <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM10.5 17L5.5 12L6.9 10.6L10.5 14.2L17.1 7.6L18.5 9L10.5 17Z" fill="currentColor"/>
+                  </svg>
+                )}
+                {profile.trustScore < 100 && (
+                   <TrustBadge badge={profile.trustBadge || 'NEW'} size="md" />
+                )}
               </h1>
               <p style={{ fontSize: '16px', color: 'var(--color-text-primary)', marginTop: 4 }}>
-                {isCompany ? userProfile.industry : (userProfile.headline || 'Professional')}
+                {profile.role === 'company' ? profile.industry : (profile.headline || 'Professional')}
               </p>
               
               <div className="text-sm text-secondary mt-2 flex items-center gap-4">
-                {userProfile.location && (<span>📍 {userProfile.location}</span>)}
-                {isCompany && userProfile.website && (<span>🌐 <a href={userProfile.website} target="_blank" rel="noreferrer" className="text-primary">{userProfile.website.replace('https://', '')}</a></span>)}
-                <span style={{ color: 'var(--color-primary)', fontWeight: 600 }}>• {userProfile.connectionsCount || 0} connections</span>
+                {profile.location && (<span>📍 {profile.location}</span>)}
+                {profile.role === 'company' && profile.website && (<span>🌐 <a href={profile.website} target="_blank" rel="noreferrer" className="text-primary">{profile.website.replace('https://', '')}</a></span>)}
+                <span style={{ color: 'var(--color-primary)', fontWeight: 600 }}>• {profile.connectionsCount || 0} connections</span>
               </div>
             </div>
 
             <div className="flex gap-2">
-              {userProfile.trustBadge !== 'HIGH_TRUST' && (
-                <button className="btn btn-outline-primary" onClick={() => navigate('/verify')} style={{ gap: 6 }}>
-                  <span style={{ fontSize: 16 }}>🛡️</span> Get Verified
-                </button>
+              {isOwnProfile ? (
+                <>
+                  {profile.trustScore < 100 && (
+                    <button className="btn btn-outline-primary" onClick={() => navigate('/verify')} style={{ gap: 6 }}>
+                      <span style={{ fontSize: 16 }}>🛡️</span> Get Verified
+                    </button>
+                  )}
+                  <button className="btn btn-secondary" onClick={openEdit}>✏️ Edit</button>
+                </>
+              ) : (
+                <>
+                  {connectionStatus === 'connected' ? (
+                    <button className="btn btn-secondary" disabled>✅ Connected</button>
+                  ) : connectionStatus === 'pending' ? (
+                    <button className="btn btn-secondary" disabled>⏳ Pending</button>
+                  ) : connectionStatus === 'received' ? (
+                    <button className="btn btn-primary" onClick={handleAccept}>Accept Request</button>
+                  ) : (
+                    <button className="btn btn-primary" onClick={handleConnect}>+ Connect</button>
+                  )}
+                </>
               )}
-              <button className="btn btn-secondary" onClick={openEdit}>✏️ Edit</button>
             </div>
           </div>
         </div>
@@ -129,28 +231,28 @@ export default function ProfilePage() {
           {/* About Section */}
           <motion.div className="card card-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
             <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: 12 }}>About</h3>
-            {userProfile.bio || userProfile.description ? (
+            {profile.bio || profile.description ? (
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>
-                {isCompany ? userProfile.description : userProfile.bio}
+                {profile.role === 'company' ? profile.description : profile.bio}
               </p>
             ) : (
               <div className="text-center p-4">
-                <p className="text-sm text-muted mb-2">You haven't written anything about yourself yet.</p>
-                <button className="btn btn-sm btn-outline-primary" onClick={openEdit}>Add summary</button>
+                <p className="text-sm text-muted mb-2">{isOwnProfile ? "You haven't written anything about yourself yet." : "No description provided."}</p>
+                {isOwnProfile && <button className="btn btn-sm btn-outline-primary" onClick={openEdit}>Add summary</button>}
               </div>
             )}
           </motion.div>
 
           {/* Education Section */}
-          {!isCompany && (
+          {profile.role !== 'company' && (
             <motion.div className="card card-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
               <div className="flex justify-between items-center mb-12">
                 <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>Education</h3>
               </div>
               
-              {userProfile.education && userProfile.education.length > 0 ? (
+              {profile.education && profile.education.length > 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  {userProfile.education.map((edu, i) => (
+                  {profile.education.map((edu, i) => (
                     <div key={i} className="flex gap-3 pt-3" style={{ borderTop: i > 0 ? '1px solid var(--color-border-light)' : 'none' }}>
                       <div style={{ padding: '8px', background: 'var(--color-bg)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         🎓
@@ -172,12 +274,12 @@ export default function ProfilePage() {
           )}
 
           {/* Skills Section */}
-          {!isCompany && (
+          {profile.role !== 'company' && (
             <motion.div className="card card-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: 12 }}>Skills</h3>
-              {(userProfile.skills && userProfile.skills.length > 0) ? (
+              {(profile.skills && profile.skills.length > 0) ? (
                 <div className="flex flex-wrap gap-2">
-                  {userProfile.skills.map((skill, i) => (
+                  {profile.skills.map((skill, i) => (
                     <span key={i} className="badge badge-skill" style={{ padding: '8px 14px', fontSize: '13px' }}>{skill}</span>
                   ))}
                 </div>
@@ -189,14 +291,73 @@ export default function ProfilePage() {
             </motion.div>
           )}
 
+          {/* AI Evaluated Projects Section */}
+          {profile.role !== 'company' && (
+            <motion.div className="card card-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                <div>
+                  <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0 }}>Verified Projects</h3>
+                  <div style={{ fontSize: '12px', color: 'var(--color-text-muted)' }}>AI Scored & Audited Codebases</div>
+                </div>
+                {isOwnProfile && (
+                  <button className="btn btn-sm btn-primary" onClick={() => setUploadProjectOpen(true)}>
+                    + Upload Repo
+                  </button>
+                )}
+              </div>
+
+              {projects.length > 0 ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {projects.map(proj => (
+                    <div key={proj.id} style={{ padding: 16, border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', background: 'var(--color-surface)' }}>
+                      <div className="flex justify-between items-start" style={{ marginBottom: 8 }}>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                          <a href={proj.githubUrl} target="_blank" rel="noreferrer" style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-primary)' }}>
+                            {proj.title} 🔗
+                          </a>
+                          <span className={`badge ${proj.rating !== 'Error' && proj.rating !== 'Pending' ? 'badge-high-trust' : 'badge-new'}`} style={{ width: 'fit-content', marginTop: '4px' }}>
+                            {proj.rating}
+                          </span>
+                        </div>
+                        {isOwnProfile && (
+                          <button 
+                            className="btn btn-icon btn-sm" 
+                            onClick={(e) => handleDeleteProject(e, proj.id)}
+                            title="Delete Project"
+                            style={{ 
+                              color: 'var(--color-danger)', 
+                              position: 'relative', 
+                              zIndex: 10,
+                              background: 'rgba(239, 68, 68, 0.1)'
+                            }}
+                          >
+                            🗑️
+                          </button>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '14px', color: 'var(--color-text-primary)' }}>
+                        <strong style={{ fontSize: '12px', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>AI Review: </strong>
+                        {proj.aiReview}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center p-4" style={{ background: 'var(--color-surface)', borderRadius: 'var(--radius-md)' }}>
+                  <p className="text-sm text-muted">Upload a project ZIP file to receive a recruiter-grade AI assessment natively added to your profile.</p>
+                </div>
+              )}
+            </motion.div>
+          )}
+
         </div>
 
         {/* Right Sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <motion.div className="card" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
             <TrustScoreWidget 
-              score={userProfile.trustScore || 0} 
-              badge={userProfile.trustBadge || 'NEW'} 
+              score={profile.trustScore || 0} 
+              badge={profile.trustBadge || 'NEW'} 
             />
           </motion.div>
 
@@ -291,6 +452,14 @@ export default function ProfilePage() {
           </>
         )}
       </Modal>
+
+      <UploadProjectModal 
+        isOpen={uploadProjectOpen} 
+        onClose={() => setUploadProjectOpen(false)} 
+        onProjectUploaded={() => {
+          getProjects(userProfile.uid).then(setProjects).catch(console.error);
+        }} 
+      />
     </div>
   );
 }
