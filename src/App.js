@@ -27,7 +27,7 @@ function ProtectedRoute({ children }) {
         gap: '16px'
       }}>
         <div className="navbar-brand-icon" style={{ width: 56, height: 56, fontSize: 22, animation: 'pulse 1.5s infinite' }}>TL</div>
-        <div style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}>Loading TrustLedger...</div>
+        <div style={{ color: 'var(--color-text-muted)', fontSize: '14px' }}>Loading Nexalink...</div>
         <style>{`
           @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }

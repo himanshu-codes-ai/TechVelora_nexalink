@@ -18,7 +18,7 @@ const DEMO_POSTS = [
     authorAvatar: '',
     authorHeadline: 'Senior Software Engineer at Google',
     authorTrustBadge: 'HIGH_TRUST',
-    content: '🎉 Excited to announce that I\'ve just been promoted to Senior Software Engineer! The journey has been incredible — from debugging my first "Hello World" program to architecting distributed systems serving millions of users.\n\nKey lessons from my journey:\n\n1. Never stop learning\n2. Mentor others — teaching deepens understanding\n3. Build meaningful relationships\n4. Trust the process\n\nThank you to everyone who believed in me! #CareerGrowth #Engineering #TrustLedger',
+    content: '🎉 Excited to announce that I\'ve just been promoted to Senior Software Engineer! The journey has been incredible — from debugging my first "Hello World" program to architecting distributed systems serving millions of users.\n\nKey lessons from my journey:\n\n1. Never stop learning\n2. Mentor others — teaching deepens understanding\n3. Build meaningful relationships\n4. Trust the process\n\nThank you to everyone who believed in me! #CareerGrowth #Engineering #Nexalink',
     postType: 'achievement',
     likesCount: 142,
     commentsCount: 38,
@@ -203,7 +203,7 @@ export default function HomePage() {
 
         {/* Trending */}
         <div className="suggestion-panel mt-4 slide-up" style={{ animationDelay: '0.15s' }}>
-          <div className="suggestion-panel-header">🔥 Trending on TrustLedger</div>
+          <div className="suggestion-panel-header">🔥 Trending on Nexalink</div>
           {[
             { tag: '#AIEngineering', posts: '1.2K posts' },
             { tag: '#RemoteWork', posts: '892 posts' },

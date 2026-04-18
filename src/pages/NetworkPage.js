@@ -22,7 +22,7 @@ const DEMO_REQUESTS = [
 ];
 
 export default function NetworkPage() {
-  const { currentUser } = useAuth();
+  const { currentUser, fetchUserProfile } = useAuth();
   const [activeTab, setActiveTab] = useState('discover');
   const [people, setPeople] = useState(DEMO_PEOPLE);
   const [connections, setConnections] = useState([]);
@@ -34,12 +34,16 @@ export default function NetworkPage() {
     async function loadData() {
       try {
         const users = await getAllUsers();
-        if (users.length > 0) setPeople(users);
         if (currentUser) {
+          if (users.length > 0) {
+            setPeople(users.filter(u => u.uid !== currentUser.uid));
+          }
           const conns = await getConnections(currentUser.uid);
           setConnections(conns);
           const pending = await getPendingRequests(currentUser.uid);
           if (pending.length > 0) setPendingRequests(pending);
+        } else {
+          if (users.length > 0) setPeople(users);
         }
       } catch (err) {
         console.log('Using demo network data');
@@ -63,6 +67,11 @@ export default function NetworkPage() {
     try {
       await acceptConnection(request.connectionId, currentUser.uid);
       setPendingRequests(prev => prev.filter(r => r.connectionId !== request.connectionId));
+      
+      // Pull fresh profile data so the UI header instantly shows +1 connection count
+      if (fetchUserProfile && currentUser) {
+        await fetchUserProfile(currentUser.uid);
+      }
     } catch (err) {
       setPendingRequests(prev => prev.filter(r => r.connectionId !== request.connectionId));
     }
@@ -77,7 +86,13 @@ export default function NetworkPage() {
     }
   }
 
+  // Quick lookup for active connections
+  const connectedUserIds = new Set(connections.map(c => c.uid));
+
   const filteredPeople = people.filter(p => {
+    // Hide if they are already connected
+    if (connectedUserIds.has(p.uid)) return false;
+    
     if (!searchQuery) return true;
     const q = searchQuery.toLowerCase();
     return p.name.toLowerCase().includes(q) || (p.headline || '').toLowerCase().includes(q);

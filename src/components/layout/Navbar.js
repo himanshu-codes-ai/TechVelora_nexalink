@@ -44,7 +44,7 @@ export default function Navbar() {
             background: 'linear-gradient(135deg, #2563EB, #7C3AED)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
-          }}>TrustLedger</span>
+          }}>Nexalink</span>
         </Link>
 
         <div className="navbar-search">

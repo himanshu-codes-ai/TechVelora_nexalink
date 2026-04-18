@@ -21,7 +21,8 @@ export async function updateUserProfile(uid, data, role) {
 // ========== POSTS ==========
 
 export async function createPost(postData) {
-  const newPostRef = push(ref(db, 'posts'));
+  const authorId = postData.authorId;
+  const newPostRef = push(ref(db, `posts/${authorId}`));
   const postId = newPostRef.key;
   
   await set(newPostRef, {
@@ -29,12 +30,12 @@ export async function createPost(postData) {
     likesCount: 0,
     commentsCount: 0,
     repostsCount: 0,
-    createdAt: Date.now() // RTDB doesn't sort well with serverTimestamp() objects natively in JS without conversion
+    createdAt: Date.now()
   });
   
   // Increment author's post count
   const authorCollection = postData.authorType === 'company' ? 'companies' : 'users';
-  const authorRef = ref(db, `${authorCollection}/${postData.authorId}`);
+  const authorRef = ref(db, `${authorCollection}/${authorId}`);
   const authorSnap = await get(authorRef);
   if (authorSnap.exists()) {
     const currentCount = authorSnap.val().postsCount || 0;
@@ -45,35 +46,62 @@ export async function createPost(postData) {
 }
 
 export async function getPosts(pageSize = 20, lastTimestamp = null, userId = null) {
-  // Try backend ranking first if we have a userId
-  if (userId && !lastTimestamp) {
-    try {
-      const response = await fetch(`/api/feed/ranked?uid=${userId}&limit=${pageSize}`);
-      if (response.ok) {
-        const posts = await response.json();
-        return { posts, lastDoc: null, isRanked: true };
-      }
-    } catch (err) {
-      console.warn("Backend ranked feed unavailable, falling back to RTDB:", err.message);
+  // Try backend ranking first
+  try {
+    const fallbackId = userId || 'anonymous';
+    const response = await fetch(`/api/feed/ranked?uid=${fallbackId}&limit=${pageSize}`);
+    if (response.ok) {
+      const posts = await response.json();
+      return { posts, lastDoc: null, isRanked: true };
+    }
+  } catch (err) {
+    console.warn("Backend ranked feed unavailable, falling back to basic RTDB fetch:", err.message);
+  }
+
+  // Fetch active connections to filter feed natively
+  let connectedIds = userId ? [userId] : [];
+  if (userId && userId !== 'anonymous') {
+    const connSnap = await get(ref(db, `user_connections/${userId}`));
+    if (connSnap.exists()) {
+      connectedIds.push(...Object.keys(connSnap.val()));
     }
   }
 
-  // Basic RTDB fallback (latest posts)
-  const postsRef = query(ref(db, 'posts'), orderByChild('createdAt'), limitToLast(pageSize));
-  const snap = await get(postsRef);
-  
-  const posts = [];
+  // Basic RTDB fallback (Flatten nested posts if backend fails)
+  const snap = await get(ref(db, 'posts'));
+  const allPosts = [];
   if (snap.exists()) {
-    snap.forEach((child) => {
-      posts.push({ postId: child.key, ...child.val() });
-    });
-    // Reverse to get newest first since limitToLast returns ascending locally
-    posts.reverse();
+    const nestedData = snap.val();
+    // Iterate through user IDs or legacy posts
+    for (const uid of Object.keys(nestedData)) {
+      const node = nestedData[uid];
+      
+      // Legacy post boundary
+      if (node.authorId || node.content) {
+        const pAuth = node.authorId || uid;
+        if (userId && userId !== 'anonymous' && !connectedIds.includes(pAuth)) continue;
+        allPosts.push({ postId: uid, ...node });
+        continue;
+      }
+      
+      // Strict connections filter for nested algorithm
+      if (userId && userId !== 'anonymous' && !connectedIds.includes(uid)) continue;
+      
+      // Otherwise, it represents nested posts by user ID: /posts/{userId}/{postId}
+      if (typeof node === 'object') {
+        for (const [pid, postData] of Object.entries(node)) {
+          allPosts.push({ postId: pid, authorId: uid, ...postData });
+        }
+      }
+    }
   }
   
+  // Sort descending by Time
+  allPosts.sort((a, b) => b.createdAt - a.createdAt);
+  
   return {
-    posts,
-    lastDoc: null, // Basic RTDB pagination omitted for simplicity in this fallback
+    posts: allPosts.slice(0, pageSize),
+    lastDoc: null,
     isRanked: false
   };
 }
@@ -122,8 +150,15 @@ export async function getEvents() {
 // ========== CONNECTIONS ==========
 
 export async function getConnections(userId) {
-  // Stubbed for brevity. 
-  return [];
+  const snap = await get(ref(db, `user_connections/${userId}`));
+  const connections = [];
+  if (snap.exists()) {
+    for (const connectedId of Object.keys(snap.val())) {
+      const u = await getUser(connectedId);
+      if(u) connections.push({ connectionId: connectedId, ...u });
+    }
+  }
+  return connections;
 }
 
 export async function getAllUsers(pageSize = 50) {
@@ -138,17 +173,66 @@ export async function getAllUsers(pageSize = 50) {
 }
 
 export async function getPendingRequests(userId) {
-  return []; // Stubbed
+  const snap = await get(ref(db, `requests/${userId}`));
+  const requests = [];
+  if (snap.exists()) {
+    for (const [fromId, val] of Object.entries(snap.val())) {
+      const u = await getUser(fromId);
+      requests.push({ connectionId: fromId, ...val, user: u });
+    }
+  }
+  return requests;
 }
 
 export async function sendConnectionRequest(fromUserId, toUserId) {
-  return "stub_id";
+  if (fromUserId === toUserId) throw new Error("Cannot connect to yourself");
+  
+  // Prevent duplicate requests or connecting if already connected
+  const isConnected = await get(ref(db, `user_connections/${fromUserId}/${toUserId}`));
+  if (isConnected.exists()) return;
+
+  const hasSent = await get(ref(db, `requests/${toUserId}/${fromUserId}`));
+  if (hasSent.exists()) return;
+
+  const hasReceived = await get(ref(db, `requests/${fromUserId}/${toUserId}`));
+  if (hasReceived.exists()) return;
+
+  const reqRef = ref(db, `requests/${toUserId}/${fromUserId}`);
+  await set(reqRef, {
+    fromUserId,
+    toUserId,
+    timestamp: Date.now()
+  });
+  return fromUserId; // returning fromUserId as the mock connectionId 
 }
 
-export async function acceptConnection(connectionId, userId) {
+export async function acceptConnection(fromUserId, userId) {
+  // Construct bidirectional accepted connection
+  await set(ref(db, `user_connections/${userId}/${fromUserId}`), { timestamp: Date.now() });
+  await set(ref(db, `user_connections/${fromUserId}/${userId}`), { timestamp: Date.now() });
+  
+  // Increment connectionsCount for both users securely (Supporting both Users and Companies)
+  for(const uid of [fromUserId, userId]) {
+    let accRef = ref(db, `users/${uid}`);
+    let snap = await get(accRef);
+    
+    if (!snap.exists()) {
+      accRef = ref(db, `companies/${uid}`);
+      snap = await get(accRef);
+    }
+    
+    if (snap.exists()) {
+      await update(accRef, { connectionsCount: (snap.val().connectionsCount || 0) + 1 });
+    }
+  }
+
+  // Delete the pending request block
+  await remove(ref(db, `requests/${userId}/${fromUserId}`));
 }
 
-export async function rejectConnection(connectionId, userId) {
+export async function rejectConnection(fromUserId, userId) {
+  // Delete the pending request block
+  await remove(ref(db, `requests/${userId}/${fromUserId}`));
 }
 
 // ========== EVENTS EXTRA ==========
@@ -171,30 +255,34 @@ export async function registerForEvent(eventId, userId) {
 }
 
 // ========== POST ACTIONS ==========
-export async function likePost(postId, userId) {
-  const likeRef = ref(db, `posts_likes/${postId}_${userId}`);
-  const snap = await get(likeRef);
+export async function likePost(postId, userId, authorId) {
+  if (!authorId) return false;
+  const postRef = ref(db, `posts/${authorId}/${postId}`);
+  const likeRef = ref(db, `posts/${authorId}/${postId}/likes/${userId}`);
   
-  const postRef = ref(db, `posts/${postId}`);
   const postSnap = await get(postRef);
-  const currentLikes = postSnap.exists() ? (postSnap.val().likesCount || 0) : 0;
+  if (!postSnap.exists()) return false;
+  const currentLikes = postSnap.val().likesCount || 0;
 
+  const snap = await get(likeRef);
   if (snap.exists()) {
     await remove(likeRef);
-    if (postSnap.exists()) await update(postRef, { likesCount: Math.max(0, currentLikes - 1) });
-    return false;
+    await update(postRef, { likesCount: Math.max(0, currentLikes - 1) });
+    return false; // unliked
   } else {
-    await set(likeRef, { postId, userId, createdAt: Date.now() });
-    if (postSnap.exists()) await update(postRef, { likesCount: currentLikes + 1 });
-    return true;
+    await set(likeRef, { userId, createdAt: Date.now() });
+    await update(postRef, { likesCount: currentLikes + 1 });
+    return true; // liked
   }
 }
 
-export async function addComment(postId, commentData) {
-  const newRef = push(ref(db, 'posts_comments'));
+export async function addComment(postId, commentData, authorId) {
+  if (!authorId) return null;
+  const commentsRef = ref(db, `posts/${authorId}/${postId}/comments`);
+  const newRef = push(commentsRef);
   await set(newRef, { postId, ...commentData, createdAt: Date.now() });
   
-  const postRef = ref(db, `posts/${postId}`);
+  const postRef = ref(db, `posts/${authorId}/${postId}`);
   const postSnap = await get(postRef);
   if (postSnap.exists()) {
     await update(postRef, { commentsCount: (postSnap.val().commentsCount || 0) + 1 });
@@ -202,13 +290,14 @@ export async function addComment(postId, commentData) {
   return newRef.key;
 }
 
-export async function getComments(postId) {
-  const snap = await get(query(ref(db, 'posts_comments'), orderByChild('postId'), equalTo(postId)));
+export async function getComments(postId, authorId) {
+  if (!authorId) return [];
+  const snap = await get(ref(db, `posts/${authorId}/${postId}/comments`));
   const comments = [];
   if (snap.exists()) {
-    snap.forEach((child) => {
-      comments.push({ commentId: child.key, ...child.val() });
-    });
+    for (const [key, val] of Object.entries(snap.val())) {
+      comments.push({ commentId: key, ...val });
+    }
   }
   return comments.sort((a, b) => a.createdAt - b.createdAt);
 }

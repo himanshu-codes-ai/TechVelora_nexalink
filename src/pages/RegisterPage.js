@@ -69,11 +69,11 @@ export default function RegisterPage() {
             background: 'linear-gradient(135deg, #2563EB, #7C3AED)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
-          }}>TrustLedger</span>
+          }}>Nexalink</span>
         </div>
 
         <div className="auth-card">
-          <h1 className="auth-title">Join TrustLedger</h1>
+          <h1 className="auth-title">Join Nexalink</h1>
           <p className="auth-subtitle">Build your trusted professional network</p>
 
           {/* Role Selector */}

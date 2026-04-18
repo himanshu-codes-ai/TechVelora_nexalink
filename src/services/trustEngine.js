@@ -1,5 +1,5 @@
 /**
- * TrustLedger Trust Scoring Engine
+ * Nexalink Trust Scoring Engine
  * Calculates trust score (0-100) based on weighted signals
  */
 

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import trust, feed
 import time
 
-app = FastAPI(title="TrustLedger Social OS API")
+app = FastAPI(title="Nexalink Social OS API")
 
 # CORS Configuration
 # In production, specify actual origins
@@ -32,7 +32,7 @@ app.include_router(feed.router, prefix="/api")
 async def root():
     return {
         "status": "online",
-        "message": "TrustLedger Social OS API is running",
+        "message": "Nexalink Social OS API is running",
         "version": "1.0.0"
     }
 

@@ -28,7 +28,7 @@ export default function PostCard({ post, onUpdate }) {
   async function handleLike() {
     if (!currentUser) return;
     try {
-      const isLiked = await likePost(post.postId, currentUser.uid);
+      const isLiked = await likePost(post.postId, currentUser.uid, post.authorId);
       setLiked(isLiked);
       setLikesCount(prev => isLiked ? prev + 1 : prev - 1);
     } catch (err) {
@@ -40,7 +40,7 @@ export default function PostCard({ post, onUpdate }) {
     if (!showComments) {
       setLoadingComments(true);
       try {
-        const data = await getComments(post.postId);
+        const data = await getComments(post.postId, post.authorId);
         setComments(data);
       } catch (err) {
         console.error('Error loading comments:', err);
@@ -57,7 +57,7 @@ export default function PostCard({ post, onUpdate }) {
         authorId: currentUser.uid,
         authorName: currentUser.displayName || 'User',
         content: commentText.trim()
-      });
+      }, post.authorId);
       setComments(prev => [...prev, {
         commentId: Date.now().toString(),
         authorId: currentUser.uid,

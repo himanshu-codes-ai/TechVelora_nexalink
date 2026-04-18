@@ -54,7 +54,7 @@ export default function LoginPage() {
             background: 'linear-gradient(135deg, #2563EB, #7C3AED)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
-          }}>TrustLedger</span>
+          }}>Nexalink</span>
         </div>
 
         <div className="auth-card">

@@ -12,21 +12,25 @@ async def get_ranked_feed(uid: str, limit: int = 20):
     Ranking Score = (Engagement * TrustModifier) / (TimeDecay)
     """
     try:
-        # Fetch posts from RTDB (last 50 by createdAt for pool)
-        posts_ref = db.child('posts').order_by_child('createdAt').limit_to_last(50).get()
-        
+        # Fetch connections for current user to filter feed
+        connected_ids = [uid]
+        if uid and uid != 'anonymous':
+            conns_ref = db.child(f'user_connections/{uid}').get()
+            if conns_ref and isinstance(conns_ref, dict):
+                connected_ids.extend(list(conns_ref.keys()))
+
         posts = []
         if posts_ref:
-            # RTDB returns mostly dicts for ordered queries, sometimes lists if keys are integers
-            if isinstance(posts_ref, list):
-                for i, p in enumerate(posts_ref):
-                    if p:
-                        p['postId'] = str(i)
-                        posts.append(p)
-            else:
-                for k, p in posts_ref.items():
-                    p['postId'] = k
-                    posts.append(p)
+            # posts_ref is dict: { "userId": { "postId": { postData }, ... } }
+            for user_id, user_posts in posts_ref.items():
+                if uid != 'anonymous' and user_id not in connected_ids:
+                    continue  # EXCLUSIVE Connections Feed filter
+                if isinstance(user_posts, dict):
+                    for pid, p in user_posts.items():
+                        if isinstance(p, dict):
+                            p['postId'] = pid
+                            p['authorId'] = user_id
+                            posts.append(p)
 
         if not posts:
             return []
