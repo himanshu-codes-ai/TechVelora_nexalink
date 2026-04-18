@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { ref, get, set } from 'firebase/database';
 import { auth, googleProvider, rtdb as db } from '../config/firebase';
+import { generateReferralCode } from '../services/referralService';
 
 const AuthContext = createContext(null);
 
@@ -111,6 +112,13 @@ export function AuthProvider({ children }) {
       emailVerified: false,
       connectionsCount: 0,
       postsCount: 0,
+      referralCode: generateReferralCode(name),
+      referralCount: 0,
+      verifiedReferralCount: 0,
+      referralTier: 'none',
+      nexaCoins: 0,
+      referredBy: extraData.referredBy || null,
+      referredByCode: extraData.referredByCode || null,
       createdAt: Date.now(),
       updatedAt: Date.now()
     };
@@ -148,6 +156,11 @@ export function AuthProvider({ children }) {
         emailVerified: true,
         connectionsCount: 0,
         postsCount: 0,
+        referralCode: generateReferralCode(cred.user.displayName || 'USER'),
+        referralCount: 0,
+        verifiedReferralCount: 0,
+        referralTier: 'none',
+        nexaCoins: 0,
         createdAt: Date.now(),
         updatedAt: Date.now()
       };

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { recalculateTrustScore } from '../services/realtimeService';
+import { findUserByReferralCode, recordReferral } from '../services/referralService';
 
 export default function RegisterPage() {
   const { registerWithEmail, loginWithGoogle } = useAuth();
@@ -14,6 +15,17 @@ export default function RegisterPage() {
   const [industry, setIndustry] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const refCode = searchParams.get('ref') || '';
+  const [referrerName, setReferrerName] = useState('');
+
+  useEffect(() => {
+    if (refCode) {
+      findUserByReferralCode(refCode).then(user => {
+        if (user) setReferrerName(user.name);
+      }).catch(() => {});
+    }
+  }, [refCode]);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -29,7 +41,16 @@ export default function RegisterPage() {
     setLoading(true);
     setError('');
     try {
-      const user = await registerWithEmail(email, password, name, role, { industry });
+      const user = await registerWithEmail(email, password, name, role, {
+        industry,
+        referredByCode: refCode || null
+      });
+      // Record the referral attribution
+      if (refCode && user?.uid) {
+        recordReferral(refCode, user.uid, email).catch(err => {
+          console.warn('Referral attribution failed:', err.message);
+        });
+      }
       // Trigger initial trust calculation in background
       if (user?.uid) {
         recalculateTrustScore(user.uid).catch(err => {
@@ -75,6 +96,19 @@ export default function RegisterPage() {
         <div className="auth-card">
           <h1 className="auth-title">Join Nexalink</h1>
           <p className="auth-subtitle">Build your trusted professional network</p>
+
+          {/* Referral Badge */}
+          {referrerName && (
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1))',
+              border: '1px solid rgba(37,99,235,0.2)',
+              borderRadius: 8, padding: '10px 14px', marginBottom: 16,
+              display: 'flex', alignItems: 'center', gap: 8, fontSize: 13
+            }}>
+              <span>🎉</span>
+              <span>Referred by <strong style={{ color: 'var(--color-primary)' }}>{referrerName}</strong></span>
+            </div>
+          )}
 
           {/* Role Selector */}
           <div className="role-selector">

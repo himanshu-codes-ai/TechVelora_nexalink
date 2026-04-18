@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navbar from './components/layout/Navbar';
 import Sidebar from './components/layout/Sidebar';
+import ContextualAIAssistant from './components/assistant/ContextualAIAssistant';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
@@ -12,6 +13,9 @@ import EventsPage from './pages/EventsPage';
 import NetworkPage from './pages/NetworkPage';
 import SettingsPage from './pages/SettingsPage';
 import VerificationPage from './pages/VerificationPage';
+import ReferralPage from './pages/ReferralPage';
+import RewardsPage from './pages/RewardsPage';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 function ProtectedRoute({ children }) {
   const { currentUser, loading } = useAuth();
@@ -56,7 +60,7 @@ function AppLayout() {
   const location = useLocation();
   const authPages = ['/login', '/register'];
   const isAuthPage = authPages.includes(location.pathname);
-  const fullWidthPages = ['/profile', '/jobs', '/events', '/settings', '/verify'];
+  const fullWidthPages = ['/profile', '/jobs', '/events', '/settings', '/verify', '/referral', '/rewards', '/leaderboard'];
   const isFullWidth = fullWidthPages.some(p => location.pathname.startsWith(p));
 
   if (isAuthPage) {
@@ -73,6 +77,7 @@ function AppLayout() {
       <Navbar />
       <main className="app-main">
         {!isFullWidth && <Sidebar />}
+        {!isAuthPage && <ContextualAIAssistant />}
         <Routes>
           <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
@@ -82,6 +87,9 @@ function AppLayout() {
           <Route path="/network" element={<ProtectedRoute><NetworkPage /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
           <Route path="/verify" element={<ProtectedRoute><VerificationPage /></ProtectedRoute>} />
+          <Route path="/referral" element={<ProtectedRoute><ReferralPage /></ProtectedRoute>} />
+          <Route path="/rewards" element={<ProtectedRoute><RewardsPage /></ProtectedRoute>} />
+          <Route path="/leaderboard" element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
           <Route path="*" element={
             <div className="page-full">
               <div className="empty-state">

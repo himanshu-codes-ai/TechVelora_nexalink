@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../shared/Avatar';
+import WalletWidget from '../rewards/WalletWidget';
 
 export default function Navbar() {
   const { currentUser, userProfile, logout } = useAuth();
@@ -28,6 +29,7 @@ export default function Navbar() {
     { path: '/network', icon: '👥', label: 'Network' },
     { path: '/jobs', icon: '💼', label: 'Jobs' },
     { path: '/events', icon: '🎯', label: 'Events' },
+    { path: '/referral', icon: '🔗', label: 'Referral' },
   ];
 
   async function handleLogout() {
@@ -73,6 +75,7 @@ export default function Navbar() {
         </div>
 
         <div className="navbar-actions" ref={dropdownRef}>
+          <WalletWidget />
           <div className="dropdown">
             <button 
               className="btn-icon"
@@ -107,6 +110,22 @@ export default function Navbar() {
                   id="dropdown-settings"
                 >
                   ⚙️ Settings
+                </Link>
+                <Link 
+                  to="/rewards" 
+                  className="dropdown-item" 
+                  onClick={() => setShowDropdown(false)}
+                  id="dropdown-rewards"
+                >
+                  🎁 Rewards Store
+                </Link>
+                <Link 
+                  to="/leaderboard" 
+                  className="dropdown-item" 
+                  onClick={() => setShowDropdown(false)}
+                  id="dropdown-leaderboard"
+                >
+                  🏆 Leaderboard
                 </Link>
                 <div className="dropdown-divider" />
                 <button className="dropdown-item" onClick={handleLogout} id="dropdown-logout" style={{ color: 'var(--color-danger)' }}>

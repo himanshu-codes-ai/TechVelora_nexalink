@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../shared/Avatar';
 import TrustBadge from '../shared/TrustBadge';
 import TrustScoreWidget from '../trust/TrustScoreWidget';
+import ReferralCard from '../referral/ReferralCard';
 
 export default function Sidebar() {
   const { userProfile } = useAuth();
@@ -64,6 +65,11 @@ export default function Sidebar() {
         <TrustScoreWidget score={userProfile.trustScore || 0} badge={userProfile.trustBadge || 'NEW'} />
       </div>
 
+      {/* Referral Quick Card */}
+      <div className="slide-up mb-4" style={{ animationDelay: '0.15s' }}>
+        <ReferralCard />
+      </div>
+
       {/* Quick Links */}
       <div className="card slide-up" style={{ animationDelay: '0.2s' }}>
         <div className="card-header" style={{ fontSize: '13px', fontWeight: 600 }}>
@@ -74,6 +80,9 @@ export default function Sidebar() {
           <Link to="/jobs" className="dropdown-item" id="sidebar-jobs">💼 Browse Jobs</Link>
           <Link to="/events" className="dropdown-item" id="sidebar-events">🎯 Upcoming Events</Link>
           <Link to="/network" className="dropdown-item" id="sidebar-network">👥 My Network</Link>
+          <Link to="/referral" className="dropdown-item" id="sidebar-referral">🔗 Referral Hub</Link>
+          <Link to="/rewards" className="dropdown-item" id="sidebar-rewards">🎁 Rewards Store</Link>
+          <Link to="/leaderboard" className="dropdown-item" id="sidebar-leaderboard">🏆 Leaderboard</Link>
           {isCompany && (
             <Link to="/jobs?create=true" className="dropdown-item" id="sidebar-post-job">📝 Post a Job</Link>
           )}
