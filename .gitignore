@@ -22,4 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secrets
+.env
+ai-backend/.env
+backend/.env
 backend/serviceAccountKey.json
+
+# Generated
+graphify-out/
