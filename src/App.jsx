@@ -16,6 +16,9 @@ import VerificationPage from './pages/VerificationPage';
 import ReferralPage from './pages/ReferralPage';
 import RewardsPage from './pages/RewardsPage';
 import LeaderboardPage from './pages/LeaderboardPage';
+import FresherWaitlistPage from './pages/FresherWaitlistPage';
+import OpportunityMarketplacePage from './pages/OpportunityMarketplacePage';
+import SearchResultsPage from './pages/SearchResultsPage';
 
 function ProtectedRoute({ children }) {
   const { currentUser, loading } = useAuth();
@@ -60,14 +63,16 @@ function AppLayout() {
   const location = useLocation();
   const authPages = ['/login', '/register'];
   const isAuthPage = authPages.includes(location.pathname);
-  const fullWidthPages = ['/profile', '/jobs', '/events', '/settings', '/verify', '/referral', '/rewards', '/leaderboard'];
+  const fullWidthPages = ['/profile', '/jobs', '/events', '/settings', '/verify', '/referral', '/rewards', '/leaderboard', '/opportunities', '/search'];
   const isFullWidth = fullWidthPages.some(p => location.pathname.startsWith(p));
+  const isWaitlistPage = location.pathname === '/waitlist';
 
-  if (isAuthPage) {
+  if (isAuthPage || isWaitlistPage) {
     return (
       <Routes>
         <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+        <Route path="/waitlist" element={<FresherWaitlistPage />} />
       </Routes>
     );
   }
@@ -90,6 +95,8 @@ function AppLayout() {
           <Route path="/referral" element={<ProtectedRoute><ReferralPage /></ProtectedRoute>} />
           <Route path="/rewards" element={<ProtectedRoute><RewardsPage /></ProtectedRoute>} />
           <Route path="/leaderboard" element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
+          <Route path="/opportunities" element={<ProtectedRoute><OpportunityMarketplacePage /></ProtectedRoute>} />
+          <Route path="/search" element={<ProtectedRoute><SearchResultsPage /></ProtectedRoute>} />
           <Route path="*" element={
             <div className="page-full">
               <div className="empty-state">

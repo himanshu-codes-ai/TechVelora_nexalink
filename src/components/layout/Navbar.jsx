@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../shared/Avatar';
 import WalletWidget from '../rewards/WalletWidget';
+import { searchUsers } from '../../services/searchService';
 
 export default function Navbar() {
   const { currentUser, userProfile, logout } = useAuth();
@@ -10,6 +11,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [quickResults, setQuickResults] = useState([]);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function Navbar() {
     { path: '/', icon: '🏠', label: 'Feed' },
     { path: '/network', icon: '👥', label: 'Network' },
     { path: '/jobs', icon: '💼', label: 'Jobs' },
+    { path: '/opportunities', icon: '🏢', label: 'Deals' },
     { path: '/events', icon: '🎯', label: 'Events' },
     { path: '/referral', icon: '🔗', label: 'Referral' },
   ];
@@ -49,15 +52,92 @@ export default function Navbar() {
           }}>Nexalink</span>
         </Link>
 
-        <div className="navbar-search">
+        <div className="navbar-search" style={{ position: 'relative' }}>
           <span className="navbar-search-icon">🔍</span>
-          <input
-            type="text"
-            placeholder="Search people, companies, jobs..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            id="navbar-search-input"
-          />
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (searchQuery.trim().length >= 2) {
+              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+              setSearchQuery('');
+              setQuickResults([]);
+            }
+          }}>
+            <input
+              type="text"
+              placeholder="Search by name, @nexusId, skills..."
+              value={searchQuery}
+              onChange={async (e) => {
+                const val = e.target.value;
+                setSearchQuery(val);
+                if (val.trim().length >= 2) {
+                  try {
+                    const res = await searchUsers(val.trim());
+                    setQuickResults(res.slice(0, 4));
+                  } catch { setQuickResults([]); }
+                } else {
+                  setQuickResults([]);
+                }
+              }}
+              onFocus={() => { if (searchQuery.length >= 2) setQuickResults(prev => prev); }}
+              onBlur={() => setTimeout(() => setQuickResults([]), 200)}
+              id="navbar-search-input"
+            />
+          </form>
+
+          {/* Quick Search Dropdown */}
+          {quickResults.length > 0 && (
+            <div style={{
+              position: 'absolute', top: '100%', left: 0, right: 0,
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-md)',
+              boxShadow: '0 12px 32px rgba(0,0,0,0.12)',
+              zIndex: 1000, overflow: 'hidden',
+              marginTop: 4,
+            }}>
+              {quickResults.map(user => (
+                <Link
+                  key={user.uid}
+                  to={`/profile/${user.uid}`}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    padding: '10px 14px', textDecoration: 'none', color: 'inherit',
+                    borderBottom: '1px solid var(--color-border-light)',
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.background = 'var(--color-bg)'}
+                  onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
+                  onClick={() => { setSearchQuery(''); setQuickResults([]); }}
+                >
+                  <Avatar src={user.avatarUrl} name={user.name} size="sm" />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      {user.name}
+                      {user.identityVerified && <span title="Verified" style={{ color: '#16a34a', fontSize: 12 }}>✅</span>}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted)', display: 'flex', gap: 6 }}>
+                      {user.nexusId && <span style={{ color: 'var(--color-primary)', fontWeight: 600 }}>{user.nexusId}</span>}
+                      {user.headline && <span>• {user.headline.slice(0, 30)}</span>}
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 10, color: 'var(--color-text-muted)' }}>
+                    🛡️ {user.trustScore}
+                  </div>
+                </Link>
+              ))}
+              <Link
+                to={`/search?q=${encodeURIComponent(searchQuery)}`}
+                style={{
+                  display: 'block', padding: '10px 14px', textAlign: 'center',
+                  fontSize: 12, color: 'var(--color-primary)', fontWeight: 600,
+                  textDecoration: 'none', background: 'var(--color-bg)',
+                }}
+                onClick={() => { setSearchQuery(''); setQuickResults([]); }}
+              >
+                See all results →
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="navbar-nav">

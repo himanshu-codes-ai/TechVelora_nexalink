@@ -124,7 +124,7 @@ export const sendEmailOTP = async (userId, userEmail) => {
       const errorMsg = emailErr?.text || emailErr?.message || JSON.stringify(emailErr);
       throw new Error("EmailJS Delivery Failed: " + errorMsg);
     }
-    
+
     return true;
   } catch (err) {
     console.error("OTP Delivery Error:", err);

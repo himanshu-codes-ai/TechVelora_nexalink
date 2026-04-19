@@ -1,12 +1,12 @@
 # Graph Report - C:\TechVelora_nexalink  (2026-04-19)
 
 ## Corpus Check
-- 51 files · ~25,234 words
+- 59 files · ~57,704 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 202 nodes · 220 edges · 30 communities detected
-- Extraction: 85% EXTRACTED · 15% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.8)
+- 243 nodes · 263 edges · 34 communities detected
+- Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -40,44 +40,48 @@
 - [[_COMMUNITY_Community 27|Community 27]]
 - [[_COMMUNITY_Community 28|Community 28]]
 - [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
+- [[_COMMUNITY_Community 31|Community 31]]
+- [[_COMMUNITY_Community 32|Community 32]]
+- [[_COMMUNITY_Community 33|Community 33]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `useAuth()` - 21 edges
+1. `useAuth()` - 24 edges
 2. `calculateTrustScore()` - 10 edges
 3. `clamp()` - 8 edges
 4. `uploadFile()` - 6 edges
 5. `logCoinTransaction()` - 5 edges
-6. `ReferralPage()` - 4 edges
-7. `verifyReferral()` - 4 edges
-8. `PostCard()` - 3 edges
-9. `ShareModal()` - 3 edges
-10. `MilestoneTracker()` - 3 edges
+6. `evaluate_project()` - 4 edges
+7. `ReferralPage()` - 4 edges
+8. `verifyReferral()` - 4 edges
+9. `recalculateTrustScore()` - 4 edges
+10. `Post` - 3 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `ProtectedRoute()` --calls--> `useAuth()`  [INFERRED]
   C:\TechVelora_nexalink\src\App.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
 - `PublicRoute()` --calls--> `useAuth()`  [INFERRED]
   C:\TechVelora_nexalink\src\App.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
+- `ContextualAIAssistant()` --calls--> `useAuth()`  [INFERRED]
+  C:\TechVelora_nexalink\src\components\assistant\ContextualAIAssistant.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
 - `CreatePostModal()` --calls--> `useAuth()`  [INFERRED]
   C:\TechVelora_nexalink\src\components\feed\CreatePostModal.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
 - `PostCard()` --calls--> `useAuth()`  [INFERRED]
   C:\TechVelora_nexalink\src\components\feed\PostCard.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
-- `Navbar()` --calls--> `useAuth()`  [INFERRED]
-  C:\TechVelora_nexalink\src\components\layout\Navbar.jsx → C:\TechVelora_nexalink\src\contexts\AuthContext.jsx
 
 ## Communities
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (18): ProtectedRoute(), PublicRoute(), useAuth(), CreatePostModal(), EventsPage(), HomePage(), JobsPage(), LoginPage() (+10 more)
+Nodes (21): ProtectedRoute(), PublicRoute(), useAuth(), ContextualAIAssistant(), CreatePostModal(), EventsPage(), HomePage(), JobsPage() (+13 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.06
-Nodes (0): 
+Nodes (3): getConnections(), getPendingRequests(), getUser()
 
 ### Community 2 - "Community 2"
-Cohesion: 0.1
-Nodes (3): getConnections(), getPendingRequests(), getUser()
+Cohesion: 0.06
+Nodes (0): 
 
 ### Community 3 - "Community 3"
 Cohesion: 0.13
@@ -92,36 +96,36 @@ Cohesion: 0.26
 Nodes (14): TrustBadge(), calculateAccountAge(), calculateCompanyTrustScore(), calculateConnectionsScore(), calculateConsistency(), calculateEmailVerified(), calculateEngagementScore(), calculateExperienceScore() (+6 more)
 
 ### Community 6 - "Community 6"
+Cohesion: 0.23
+Nodes (10): BaseModel, Event, Job, Post, TrustSignal, UserProfile, evaluate_project(), extract_code_from_zip() (+2 more)
+
+### Community 7 - "Community 7"
 Cohesion: 0.43
 Nodes (6): uploadAvatar(), uploadCompanyLogo(), uploadEventImage(), uploadFile(), uploadPostMedia(), uploadResume()
 
-### Community 7 - "Community 7"
-Cohesion: 0.48
-Nodes (6): BaseModel, Event, Job, Post, TrustSignal, UserProfile
-
 ### Community 8 - "Community 8"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 0.48
+Nodes (5): fileToBase64(), getUserVerificationDocs(), recalculateTrustScore(), uploadGovernmentId(), verifyEmailOTP()
 
 ### Community 9 - "Community 9"
 Cohesion: 0.67
-Nodes (2): initialize_firebase(), Initializes Firebase Admin SDK with Realtime Database.
+Nodes (0): 
 
 ### Community 10 - "Community 10"
 Cohesion: 0.67
-Nodes (2): get_ranked_feed(), Retrieves and ranks posts based on trust, engagement, and recency.     Ranking
+Nodes (2): initialize_firebase(), Initializes Firebase Admin SDK with Realtime Database.
 
 ### Community 11 - "Community 11"
-Cohesion: 1.0
-Nodes (2): calculate_trust_score(), get_badge()
+Cohesion: 0.67
+Nodes (2): get_ranked_feed(), Retrieves and ranks posts based on trust, engagement, and recency.     Ranking
 
 ### Community 12 - "Community 12"
 Cohesion: 1.0
-Nodes (2): PostCard(), timeAgo()
+Nodes (2): calculate_trust_score(), get_badge()
 
 ### Community 13 - "Community 13"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): PostCard(), timeAgo()
 
 ### Community 14 - "Community 14"
 Cohesion: 1.0
@@ -187,57 +191,79 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 30 - "Community 30"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 31 - "Community 31"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 32 - "Community 32"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 33 - "Community 33"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
-- **2 isolated node(s):** `Initializes Firebase Admin SDK with Realtime Database.`, `Retrieves and ranks posts based on trust, engagement, and recency.     Ranking`
+- **3 isolated node(s):** `Initializes Firebase Admin SDK with Realtime Database.`, `Retrieves and ranks posts based on trust, engagement, and recency.     Ranking`, `Nexalink Smart Heuristic Fallback.     Analyzes code structure locally if the A`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 13`** (2 nodes): `ContextualAIAssistant.jsx`, `ContextualAIAssistant()`
+- **Thin community `Community 14`** (2 nodes): `server.js`, `buildSystemPrompt()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 14`** (2 nodes): `ConnectionCard.jsx`, `ConnectionCard()`
+- **Thin community `Community 15`** (2 nodes): `ConnectionCard.jsx`, `ConnectionCard()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 15`** (2 nodes): `EventCard.jsx`, `EventCard()`
+- **Thin community `Community 16`** (2 nodes): `EventCard.jsx`, `EventCard()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (2 nodes): `JobCard.jsx`, `JobCard()`
+- **Thin community `Community 17`** (2 nodes): `JobCard.jsx`, `JobCard()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (2 nodes): `LeaderboardTable.jsx`, `LeaderboardTable()`
+- **Thin community `Community 18`** (2 nodes): `JobDetailModal.jsx`, `JobDetailModal()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (2 nodes): `RewardCatalog.jsx`, `RewardCatalog()`
+- **Thin community `Community 19`** (2 nodes): `LeaderboardTable.jsx`, `LeaderboardTable()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (2 nodes): `Avatar()`, `Avatar.jsx`
+- **Thin community `Community 20`** (2 nodes): `OpportunityCard.jsx`, `OpportunityCard()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (2 nodes): `EmptyState.jsx`, `EmptyState()`
+- **Thin community `Community 21`** (2 nodes): `OpportunityDetailModal.jsx`, `OpportunityDetailModal()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (2 nodes): `Modal.jsx`, `Modal()`
+- **Thin community `Community 22`** (2 nodes): `RewardCatalog.jsx`, `RewardCatalog()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (2 nodes): `Skeleton.jsx`, `Skeleton()`
+- **Thin community `Community 23`** (2 nodes): `Avatar()`, `Avatar.jsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (2 nodes): `TrustScoreWidget.jsx`, `TrustScoreWidget()`
+- **Thin community `Community 24`** (2 nodes): `EmptyState.jsx`, `EmptyState()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 24`** (1 nodes): `eslint.config.js`
+- **Thin community `Community 25`** (2 nodes): `Modal.jsx`, `Modal()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (1 nodes): `vite.config.js`
+- **Thin community `Community 26`** (2 nodes): `Skeleton.jsx`, `Skeleton()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (1 nodes): `server.js`
+- **Thin community `Community 27`** (2 nodes): `TrustScoreWidget.jsx`, `TrustScoreWidget()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 27`** (1 nodes): `__init__.py`
+- **Thin community `Community 28`** (2 nodes): `FresherWaitlistPage.jsx`, `FresherWaitlistPage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 28`** (1 nodes): `main.jsx`
+- **Thin community `Community 29`** (1 nodes): `eslint.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 29`** (1 nodes): `firebase.jsx`
+- **Thin community `Community 30`** (1 nodes): `vite.config.js`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 31`** (1 nodes): `__init__.py`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 32`** (1 nodes): `main.jsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 33`** (1 nodes): `firebase.jsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useAuth()` connect `Community 0` to `Community 3`, `Community 12`?**
-  _High betweenness centrality (0.112) - this node is a cross-community bridge._
+- **Why does `useAuth()` connect `Community 0` to `Community 3`, `Community 13`?**
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
 - **Why does `ReferralPage()` connect `Community 3` to `Community 0`?**
-  _High betweenness centrality (0.056) - this node is a cross-community bridge._
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **Why does `getTierLabel()` connect `Community 3` to `Community 4`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
-- **Are the 20 inferred relationships involving `useAuth()` (e.g. with `ProtectedRoute()` and `PublicRoute()`) actually correct?**
-  _`useAuth()` has 20 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Initializes Firebase Admin SDK with Realtime Database.`, `Retrieves and ranks posts based on trust, engagement, and recency.     Ranking` to the rest of the system?**
-  _2 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Are the 23 inferred relationships involving `useAuth()` (e.g. with `ProtectedRoute()` and `PublicRoute()`) actually correct?**
+  _`useAuth()` has 23 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `Initializes Firebase Admin SDK with Realtime Database.`, `Retrieves and ranks posts based on trust, engagement, and recency.     Ranking`, `Nexalink Smart Heuristic Fallback.     Analyzes code structure locally if the A` to the rest of the system?**
+  _3 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**

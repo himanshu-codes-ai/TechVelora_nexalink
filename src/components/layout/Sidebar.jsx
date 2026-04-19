@@ -30,6 +30,11 @@ export default function Sidebar() {
             className=""
           />
           <h3 style={{ fontSize: '15px', fontWeight: 600, marginTop: 8 }}>{userProfile.name}</h3>
+          {userProfile.nexusId && (
+            <p style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 600, marginTop: 2, letterSpacing: '0.3px' }}>
+              {userProfile.nexusId}
+            </p>
+          )}
           <p className="text-xs text-muted" style={{ marginTop: 2 }}>
             {isCompany ? userProfile.industry : userProfile.headline || 'Professional'}
           </p>

@@ -185,14 +185,32 @@ export default function ProfilePage() {
                    <TrustBadge badge={profile.trustBadge || 'NEW'} size="md" />
                 )}
               </h1>
+              {profile.nexusId && (
+                <p style={{ fontSize: '14px', color: 'var(--color-primary)', fontWeight: 600, marginTop: 2, letterSpacing: '0.3px' }}>
+                  {profile.nexusId}
+                </p>
+              )}
               <p style={{ fontSize: '16px', color: 'var(--color-text-primary)', marginTop: 4 }}>
                 {profile.role === 'company' ? profile.industry : (profile.headline || 'Professional')}
               </p>
               
-              <div className="text-sm text-secondary mt-2 flex items-center gap-4">
+              <div className="text-sm text-secondary mt-2 flex items-center gap-4" style={{ flexWrap: 'wrap' }}>
                 {profile.location && (<span>📍 {profile.location}</span>)}
                 {profile.role === 'company' && profile.website && (<span>🌐 <a href={profile.website} target="_blank" rel="noreferrer" className="text-primary">{profile.website.replace('https://', '')}</a></span>)}
                 <span style={{ color: 'var(--color-primary)', fontWeight: 600 }}>• {profile.connectionsCount || 0} connections</span>
+                {/* Identity Verification Badges */}
+                {profile.livenessVerified && (
+                  <span title="Face Liveness Verified" style={{ 
+                    fontSize: '11px', padding: '2px 8px', borderRadius: '10px',
+                    background: 'rgba(34, 197, 94, 0.1)', color: '#16a34a', fontWeight: 600 
+                  }}>🟢 Liveness Verified</span>
+                )}
+                {profile.identityVerified && (
+                  <span title="Government ID Verified" style={{ 
+                    fontSize: '11px', padding: '2px 8px', borderRadius: '10px',
+                    background: 'rgba(37, 99, 235, 0.1)', color: '#2563eb', fontWeight: 600 
+                  }}>🛡️ ID Verified</span>
+                )}
               </div>
             </div>
 
@@ -447,6 +465,43 @@ export default function ProfilePage() {
                     <span style={{ cursor: 'pointer', fontSize: 10, padding: 2 }} onClick={() => removeSkill(i)}>✕</span>
                   </span>
                 ))}
+              </div>
+            </div>
+
+            <hr style={{ margin: '16px 0', border: 'none', borderTop: '1px solid var(--color-border-light)' }} />
+            <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: 12 }}>Professional Credibility</h4>
+
+            <div className="form-group">
+              <label className="form-label">
+                Years of Experience
+                <span style={{ fontSize: 11, color: 'var(--color-primary)', marginLeft: 6 }}>Verified Professionals Only</span>
+              </label>
+              <select className="form-select" value={editData.experienceYears || 0} onChange={(e) => setEditData(prev => ({ ...prev, experienceYears: parseInt(e.target.value) || 0 }))}>
+                <option value="0">Select experience</option>
+                <option value="1">1 year</option>
+                <option value="2">2 years</option>
+                <option value="3">3 years</option>
+                <option value="5">5+ years</option>
+                <option value="7">7+ years</option>
+                <option value="10">10+ years</option>
+                <option value="15">15+ years</option>
+              </select>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              <div className="form-group">
+                <label className="form-label">
+                  LinkedIn URL
+                  <span style={{ fontSize: 11, color: 'var(--color-text-muted)', marginLeft: 6 }}>+10 Trust</span>
+                </label>
+                <input className="form-input" placeholder="linkedin.com/in/yourname" value={editData.linkedInUrl || ''} onChange={(e) => setEditData(prev => ({ ...prev, linkedInUrl: e.target.value }))} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">
+                  Corporate Email
+                  <span style={{ fontSize: 11, color: 'var(--color-text-muted)', marginLeft: 6 }}>+20 Trust</span>
+                </label>
+                <input type="email" className="form-input" placeholder="you@company.com" value={editData.corporateEmail || ''} onChange={(e) => setEditData(prev => ({ ...prev, corporateEmail: e.target.value }))} />
               </div>
             </div>
           </>

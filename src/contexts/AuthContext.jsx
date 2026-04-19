@@ -10,6 +10,7 @@ import {
 import { ref, get, set } from 'firebase/database';
 import { auth, googleProvider, rtdb as db } from '../config/firebase';
 import { generateReferralCode } from '../services/referralService';
+import { generateNexusId } from '../services/searchService';
 
 const AuthContext = createContext(null);
 
@@ -78,10 +79,12 @@ export function AuthProvider({ children }) {
     await updateProfile(cred.user, { displayName: name });
 
     const collection = role === 'company' ? 'companies' : 'users';
+    const nexusId = extraData.nexusId || generateNexusId(name);
     const profileData = role === 'company' ? {
       name,
       email,
       role: 'company',
+      nexusId,
       domain: email.split('@')[1],
       industry: extraData.industry || '',
       description: '',
@@ -100,16 +103,21 @@ export function AuthProvider({ children }) {
       name,
       email,
       role: 'individual',
+      nexusId,
       headline: extraData.headline || '',
       bio: '',
       avatarUrl: '',
       location: '',
       skills: [],
       education: [],
-      experienceYears: 0,
+      experienceYears: extraData.experienceYears || 0,
+      linkedInUrl: extraData.linkedInUrl || null,
+      corporateEmail: extraData.corporateEmail || null,
       trustScore: 10,
       trustBadge: 'NEW',
       emailVerified: false,
+      livenessVerified: false,
+      identityVerified: false,
       connectionsCount: 0,
       postsCount: 0,
       referralCode: generateReferralCode(name),
@@ -144,6 +152,7 @@ export function AuthProvider({ children }) {
         name: cred.user.displayName || 'User',
         email: cred.user.email,
         role: 'individual',
+        nexusId: generateNexusId(cred.user.displayName || 'User'),
         headline: '',
         bio: '',
         avatarUrl: cred.user.photoURL || '',
@@ -154,6 +163,8 @@ export function AuthProvider({ children }) {
         trustScore: 15,
         trustBadge: 'NEW',
         emailVerified: true,
+        livenessVerified: false,
+        identityVerified: false,
         connectionsCount: 0,
         postsCount: 0,
         referralCode: generateReferralCode(cred.user.displayName || 'USER'),

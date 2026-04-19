@@ -340,3 +340,226 @@ export async function deleteProject(userId, projectId) {
     return false;
   }
 }
+
+// ========== RECRUITMENT WORKFLOW ==========
+
+// Application Status Pipeline: PENDING -> SHORTLISTED -> INTERVIEWING -> REJECTED -> HIRED
+export async function applyToJob(jobId, userId, applicationData) {
+  if (!jobId || !userId) throw new Error('jobId and userId are required');
+
+  // Prevent duplicate applications
+  const existingSnap = await get(ref(db, `job_applications/${jobId}/${userId}`));
+  if (existingSnap.exists()) throw new Error('You have already applied to this job');
+
+  const application = {
+    userId,
+    jobId,
+    status: 'PENDING',
+    appliedAt: Date.now(),
+    updatedAt: Date.now(),
+    ...applicationData
+  };
+
+  await set(ref(db, `job_applications/${jobId}/${userId}`), application);
+
+  // Also store in user's application history for quick lookup
+  await set(ref(db, `user_applications/${userId}/${jobId}`), {
+    jobId,
+    status: 'PENDING',
+    appliedAt: Date.now()
+  });
+
+  // Increment applicant count on the job
+  const jobRef = ref(db, `jobs/${jobId}`);
+  const jobSnap = await get(jobRef);
+  if (jobSnap.exists()) {
+    await update(jobRef, { applicantsCount: (jobSnap.val().applicantsCount || 0) + 1 });
+  }
+
+  return application;
+}
+
+export async function updateApplicationStatus(jobId, userId, newStatus) {
+  const validStatuses = ['PENDING', 'SHORTLISTED', 'INTERVIEWING', 'REJECTED', 'HIRED'];
+  if (!validStatuses.includes(newStatus)) throw new Error(`Invalid status: ${newStatus}`);
+
+  await update(ref(db, `job_applications/${jobId}/${userId}`), {
+    status: newStatus,
+    updatedAt: Date.now()
+  });
+
+  // Mirror status to user's application record
+  await update(ref(db, `user_applications/${userId}/${jobId}`), {
+    status: newStatus,
+    updatedAt: Date.now()
+  });
+
+  return true;
+}
+
+export async function getJobApplications(jobId) {
+  const snap = await get(ref(db, `job_applications/${jobId}`));
+  const applications = [];
+  if (snap.exists()) {
+    for (const [uid, appData] of Object.entries(snap.val())) {
+      // Fetch applicant profile for display
+      const userSnap = await get(ref(db, `users/${uid}`));
+      const userProfile = userSnap.exists() ? { uid, ...userSnap.val() } : { uid, name: 'Unknown' };
+      applications.push({ ...appData, user: userProfile });
+    }
+  }
+  return applications.sort((a, b) => b.appliedAt - a.appliedAt);
+}
+
+export async function getUserApplications(userId) {
+  const snap = await get(ref(db, `user_applications/${userId}`));
+  const applications = [];
+  if (snap.exists()) {
+    for (const [jid, appData] of Object.entries(snap.val())) {
+      // Fetch job details for display
+      const jobSnap = await get(ref(db, `jobs/${jid}`));
+      const jobDetails = jobSnap.exists() ? { jobId: jid, ...jobSnap.val() } : { jobId: jid, title: 'Deleted Job' };
+      applications.push({ ...appData, job: jobDetails });
+    }
+  }
+  return applications.sort((a, b) => b.appliedAt - a.appliedAt);
+}
+
+// ========== OPPORTUNITY MARKETPLACE ==========
+
+export async function createOpportunity(data) {
+  if (!data.title || !data.description || !data.type) {
+    throw new Error('Title, description, and type are required');
+  }
+  const newRef = push(ref(db, 'opportunities'));
+  const opportunity = {
+    ...data,
+    oppId: newRef.key,
+    status: 'open',
+    interestCount: 0,
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  };
+  await set(newRef, opportunity);
+  return opportunity;
+}
+
+export async function getOpportunities(filters = {}) {
+  const snap = await get(ref(db, 'opportunities'));
+  let opportunities = [];
+  if (snap.exists()) {
+    for (const [id, data] of Object.entries(snap.val())) {
+      opportunities.push({ oppId: id, ...data });
+    }
+  }
+  // Apply filters
+  if (filters.type) opportunities = opportunities.filter(o => o.type === filters.type);
+  if (filters.category) opportunities = opportunities.filter(o => o.category === filters.category);
+  if (filters.status) opportunities = opportunities.filter(o => o.status === filters.status);
+  return opportunities.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+}
+
+export async function getOpportunity(oppId) {
+  const snap = await get(ref(db, `opportunities/${oppId}`));
+  if (!snap.exists()) return null;
+  const opp = { oppId, ...snap.val() };
+  // Enrich with poster profile
+  const posterSnap = await get(ref(db, `users/${opp.postedBy}`));
+  if (!posterSnap.exists()) {
+    const compSnap = await get(ref(db, `companies/${opp.postedBy}`));
+    opp.poster = compSnap.exists() ? { uid: opp.postedBy, ...compSnap.val() } : null;
+  } else {
+    opp.poster = { uid: opp.postedBy, ...posterSnap.val() };
+  }
+  return opp;
+}
+
+export async function expressInterest(oppId, userId, interestData) {
+  if (!oppId || !userId) throw new Error('oppId and userId are required');
+
+  // Prevent duplicate interests
+  const existingSnap = await get(ref(db, `opportunity_interests/${oppId}/${userId}`));
+  if (existingSnap.exists()) throw new Error('You have already expressed interest in this opportunity');
+
+  const interest = {
+    userId,
+    oppId,
+    status: 'PENDING',
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+    ...interestData
+  };
+
+  await set(ref(db, `opportunity_interests/${oppId}/${userId}`), interest);
+
+  // Mirror to user's interests for quick lookup
+  await set(ref(db, `user_interests/${userId}/${oppId}`), {
+    oppId,
+    status: 'PENDING',
+    sentAt: Date.now()
+  });
+
+  // Increment interest count
+  const oppRef = ref(db, `opportunities/${oppId}`);
+  const oppSnap = await get(oppRef);
+  if (oppSnap.exists()) {
+    await update(oppRef, { interestCount: (oppSnap.val().interestCount || 0) + 1 });
+  }
+
+  return interest;
+}
+
+export async function updateInterestStatus(oppId, userId, newStatus) {
+  const validStatuses = ['PENDING', 'ACCEPTED', 'IN_DISCUSSION', 'DECLINED'];
+  if (!validStatuses.includes(newStatus)) throw new Error(`Invalid status: ${newStatus}`);
+
+  await update(ref(db, `opportunity_interests/${oppId}/${userId}`), {
+    status: newStatus,
+    updatedAt: Date.now()
+  });
+
+  await update(ref(db, `user_interests/${userId}/${oppId}`), {
+    status: newStatus,
+    updatedAt: Date.now()
+  });
+
+  return true;
+}
+
+export async function getOpportunityInterests(oppId) {
+  const snap = await get(ref(db, `opportunity_interests/${oppId}`));
+  const interests = [];
+  if (snap.exists()) {
+    for (const [uid, data] of Object.entries(snap.val())) {
+      const userSnap = await get(ref(db, `users/${uid}`));
+      let profile = userSnap.exists() ? { uid, ...userSnap.val() } : null;
+      if (!profile) {
+        const compSnap = await get(ref(db, `companies/${uid}`));
+        profile = compSnap.exists() ? { uid, ...compSnap.val() } : { uid, name: 'Unknown' };
+      }
+      interests.push({ ...data, user: profile });
+    }
+  }
+  return interests.sort((a, b) => b.createdAt - a.createdAt);
+}
+
+export async function getUserInterests(userId) {
+  const snap = await get(ref(db, `user_interests/${userId}`));
+  const interests = [];
+  if (snap.exists()) {
+    for (const [oid, data] of Object.entries(snap.val())) {
+      const oppSnap = await get(ref(db, `opportunities/${oid}`));
+      const oppDetails = oppSnap.exists() ? { oppId: oid, ...oppSnap.val() } : { oppId: oid, title: 'Deleted Opportunity' };
+      interests.push({ ...data, opportunity: oppDetails });
+    }
+  }
+  return interests.sort((a, b) => (b.sentAt || 0) - (a.sentAt || 0));
+}
+
+export async function closeOpportunity(oppId, userId) {
+  const oppSnap = await get(ref(db, `opportunities/${oppId}`));
+  if (!oppSnap.exists()) throw new Error('Opportunity not found');
+  if (oppSnap.val().postedBy !== userId) throw new Error('Only the poster can close this opportunity');
+  await update(ref(db, `opportunities/${oppId}`), { status: 'closed', updatedAt: Date.now() });
+  return true;
+}

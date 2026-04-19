@@ -9,7 +9,7 @@
       "source_file": "C:\\TechVelora_nexalink\\eslint.config.js",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_eslint_config_js",
-      "community": 24,
+      "community": 29,
       "norm_label": "eslint.config.js"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "C:\\TechVelora_nexalink\\vite.config.js",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_vite_config_js",
-      "community": 25,
+      "community": 30,
       "norm_label": "vite.config.js"
     },
     {
@@ -27,8 +27,17 @@
       "source_file": "C:\\TechVelora_nexalink\\ai-backend\\server.js",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_ai_backend_server_js",
-      "community": 26,
+      "community": 14,
       "norm_label": "server.js"
+    },
+    {
+      "label": "buildSystemPrompt()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\ai-backend\\server.js",
+      "source_location": "L32",
+      "id": "server_buildsystemprompt",
+      "community": 14,
+      "norm_label": "buildsystemprompt()"
     },
     {
       "label": "main.py",
@@ -36,7 +45,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\main.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_main_py",
-      "community": 8,
+      "community": 9,
       "norm_label": "main.py"
     },
     {
@@ -45,16 +54,16 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\main.py",
       "source_location": "L20",
       "id": "main_add_process_time_header",
-      "community": 8,
+      "community": 9,
       "norm_label": "add_process_time_header()"
     },
     {
       "label": "root()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\backend\\main.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "id": "main_root",
-      "community": 8,
+      "community": 9,
       "norm_label": "root()"
     },
     {
@@ -63,7 +72,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\config\\firebase_config.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_config_firebase_config_py",
-      "community": 9,
+      "community": 10,
       "norm_label": "firebase_config.py"
     },
     {
@@ -72,7 +81,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\config\\firebase_config.py",
       "source_location": "L8",
       "id": "firebase_config_initialize_firebase",
-      "community": 9,
+      "community": 10,
       "norm_label": "initialize_firebase()"
     },
     {
@@ -80,7 +89,7 @@
       "file_type": "rationale",
       "source_file": "C:\\TechVelora_nexalink\\backend\\config\\firebase_config.py",
       "source_location": "L9",
-      "community": 9,
+      "community": 10,
       "norm_label": "initializes firebase admin sdk with realtime database.",
       "id": "firebase_config_rationale_9"
     },
@@ -90,7 +99,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_models_domain_py",
-      "community": 7,
+      "community": 6,
       "norm_label": "domain.py"
     },
     {
@@ -99,7 +108,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L5",
       "id": "domain_trustsignal",
-      "community": 7,
+      "community": 6,
       "norm_label": "trustsignal"
     },
     {
@@ -108,7 +117,7 @@
       "source_file": "",
       "source_location": "",
       "id": "basemodel",
-      "community": 7,
+      "community": 6,
       "norm_label": "basemodel"
     },
     {
@@ -117,7 +126,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L10",
       "id": "domain_userprofile",
-      "community": 7,
+      "community": 6,
       "norm_label": "userprofile"
     },
     {
@@ -126,7 +135,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L28",
       "id": "domain_post",
-      "community": 7,
+      "community": 6,
       "norm_label": "post"
     },
     {
@@ -135,7 +144,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L42",
       "id": "domain_job",
-      "community": 7,
+      "community": 6,
       "norm_label": "job"
     },
     {
@@ -144,7 +153,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\models\\domain.py",
       "source_location": "L56",
       "id": "domain_event",
-      "community": 7,
+      "community": 6,
       "norm_label": "event"
     },
     {
@@ -153,7 +162,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\feed.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_routers_feed_py",
-      "community": 10,
+      "community": 11,
       "norm_label": "feed.py"
     },
     {
@@ -162,7 +171,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\feed.py",
       "source_location": "L9",
       "id": "feed_get_ranked_feed",
-      "community": 10,
+      "community": 11,
       "norm_label": "get_ranked_feed()"
     },
     {
@@ -170,9 +179,63 @@
       "file_type": "rationale",
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\feed.py",
       "source_location": "L10",
-      "community": 10,
+      "community": 11,
       "norm_label": "retrieves and ranks posts based on trust, engagement, and recency.     ranking",
       "id": "feed_rationale_10"
+    },
+    {
+      "label": "projects.py",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_backend_routers_projects_py",
+      "community": 6,
+      "norm_label": "projects.py"
+    },
+    {
+      "label": "run_local_evaluation()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L11",
+      "id": "projects_run_local_evaluation",
+      "community": 6,
+      "norm_label": "run_local_evaluation()"
+    },
+    {
+      "label": "extract_code_from_zip()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L30",
+      "id": "projects_extract_code_from_zip",
+      "community": 6,
+      "norm_label": "extract_code_from_zip()"
+    },
+    {
+      "label": "evaluate_project()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L54",
+      "id": "projects_evaluate_project",
+      "community": 6,
+      "norm_label": "evaluate_project()"
+    },
+    {
+      "label": "delete_project()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L136",
+      "id": "projects_delete_project",
+      "community": 6,
+      "norm_label": "delete_project()"
+    },
+    {
+      "label": "Nexalink Smart Heuristic Fallback.     Analyzes code structure locally if the A",
+      "file_type": "rationale",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L12",
+      "community": 6,
+      "norm_label": "nexalink smart heuristic fallback.     analyzes code structure locally if the a",
+      "id": "projects_rationale_12"
     },
     {
       "label": "trust.py",
@@ -180,7 +243,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\trust.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_routers_trust_py",
-      "community": 11,
+      "community": 12,
       "norm_label": "trust.py"
     },
     {
@@ -189,7 +252,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\trust.py",
       "source_location": "L7",
       "id": "trust_get_badge",
-      "community": 11,
+      "community": 12,
       "norm_label": "get_badge()"
     },
     {
@@ -198,7 +261,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\trust.py",
       "source_location": "L14",
       "id": "trust_calculate_trust_score",
-      "community": 11,
+      "community": 12,
       "norm_label": "calculate_trust_score()"
     },
     {
@@ -207,7 +270,7 @@
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\__init__.py",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_backend_routers_init_py",
-      "community": 27,
+      "community": 31,
       "norm_label": "__init__.py"
     },
     {
@@ -223,7 +286,7 @@
       "label": "ProtectedRoute()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "id": "app_protectedroute",
       "community": 0,
       "norm_label": "protectedroute()"
@@ -232,7 +295,7 @@
       "label": "PublicRoute()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L52",
+      "source_location": "L54",
       "id": "app_publicroute",
       "community": 0,
       "norm_label": "publicroute()"
@@ -241,7 +304,7 @@
       "label": "AppLayout()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L59",
+      "source_location": "L61",
       "id": "app_applayout",
       "community": 0,
       "norm_label": "applayout()"
@@ -250,7 +313,7 @@
       "label": "App()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L109",
+      "source_location": "L114",
       "id": "app_app",
       "community": 0,
       "norm_label": "app()"
@@ -261,7 +324,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\main.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_main_jsx",
-      "community": 28,
+      "community": 32,
       "norm_label": "main.jsx"
     },
     {
@@ -270,16 +333,16 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\assistant\\ContextualAIAssistant.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_assistant_contextualaiassistant_jsx",
-      "community": 13,
+      "community": 0,
       "norm_label": "contextualaiassistant.jsx"
     },
     {
       "label": "ContextualAIAssistant()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\assistant\\ContextualAIAssistant.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "id": "contextualaiassistant_contextualaiassistant",
-      "community": 13,
+      "community": 0,
       "norm_label": "contextualaiassistant()"
     },
     {
@@ -288,7 +351,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\connections\\ConnectionCard.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_connections_connectioncard_jsx",
-      "community": 14,
+      "community": 15,
       "norm_label": "connectioncard.jsx"
     },
     {
@@ -297,7 +360,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\connections\\ConnectionCard.jsx",
       "source_location": "L6",
       "id": "connectioncard_connectioncard",
-      "community": 14,
+      "community": 15,
       "norm_label": "connectioncard()"
     },
     {
@@ -306,7 +369,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\events\\EventCard.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_events_eventcard_jsx",
-      "community": 15,
+      "community": 16,
       "norm_label": "eventcard.jsx"
     },
     {
@@ -315,7 +378,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\events\\EventCard.jsx",
       "source_location": "L3",
       "id": "eventcard_eventcard",
-      "community": 15,
+      "community": 16,
       "norm_label": "eventcard()"
     },
     {
@@ -342,7 +405,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\feed\\PostCard.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_feed_postcard_jsx",
-      "community": 12,
+      "community": 13,
       "norm_label": "postcard.jsx"
     },
     {
@@ -351,7 +414,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\feed\\PostCard.jsx",
       "source_location": "L8",
       "id": "postcard_timeago",
-      "community": 12,
+      "community": 13,
       "norm_label": "timeago()"
     },
     {
@@ -360,7 +423,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\feed\\PostCard.jsx",
       "source_location": "L19",
       "id": "postcard_postcard",
-      "community": 12,
+      "community": 13,
       "norm_label": "postcard()"
     },
     {
@@ -369,7 +432,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\jobs\\JobCard.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_jobs_jobcard_jsx",
-      "community": 16,
+      "community": 17,
       "norm_label": "jobcard.jsx"
     },
     {
@@ -378,8 +441,26 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\jobs\\JobCard.jsx",
       "source_location": "L4",
       "id": "jobcard_jobcard",
-      "community": 16,
+      "community": 17,
       "norm_label": "jobcard()"
+    },
+    {
+      "label": "JobDetailModal.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\jobs\\JobDetailModal.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_components_jobs_jobdetailmodal_jsx",
+      "community": 18,
+      "norm_label": "jobdetailmodal.jsx"
+    },
+    {
+      "label": "JobDetailModal()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\jobs\\JobDetailModal.jsx",
+      "source_location": "L8",
+      "id": "jobdetailmodal_jobdetailmodal",
+      "community": 18,
+      "norm_label": "jobdetailmodal()"
     },
     {
       "label": "Navbar.jsx",
@@ -423,7 +504,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\leaderboard\\LeaderboardTable.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_leaderboard_leaderboardtable_jsx",
-      "community": 17,
+      "community": 19,
       "norm_label": "leaderboardtable.jsx"
     },
     {
@@ -432,8 +513,62 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\leaderboard\\LeaderboardTable.jsx",
       "source_location": "L4",
       "id": "leaderboardtable_leaderboardtable",
-      "community": 17,
+      "community": 19,
       "norm_label": "leaderboardtable()"
+    },
+    {
+      "label": "OpportunityCard.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityCard.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_components_opportunities_opportunitycard_jsx",
+      "community": 20,
+      "norm_label": "opportunitycard.jsx"
+    },
+    {
+      "label": "OpportunityCard()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityCard.jsx",
+      "source_location": "L22",
+      "id": "opportunitycard_opportunitycard",
+      "community": 20,
+      "norm_label": "opportunitycard()"
+    },
+    {
+      "label": "OpportunityDetailModal.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityDetailModal.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_components_opportunities_opportunitydetailmodal_jsx",
+      "community": 21,
+      "norm_label": "opportunitydetailmodal.jsx"
+    },
+    {
+      "label": "OpportunityDetailModal()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityDetailModal.jsx",
+      "source_location": "L17",
+      "id": "opportunitydetailmodal_opportunitydetailmodal",
+      "community": 21,
+      "norm_label": "opportunitydetailmodal()"
+    },
+    {
+      "label": "UploadProjectModal.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\profile\\UploadProjectModal.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_components_profile_uploadprojectmodal_jsx",
+      "community": 0,
+      "norm_label": "uploadprojectmodal.jsx"
+    },
+    {
+      "label": "UploadProjectModal()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\profile\\UploadProjectModal.jsx",
+      "source_location": "L5",
+      "id": "uploadprojectmodal_uploadprojectmodal",
+      "community": 0,
+      "norm_label": "uploadprojectmodal()"
     },
     {
       "label": "ReferralCard.jsx",
@@ -495,7 +630,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\rewards\\RewardCatalog.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_rewards_rewardcatalog_jsx",
-      "community": 18,
+      "community": 22,
       "norm_label": "rewardcatalog.jsx"
     },
     {
@@ -504,7 +639,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\rewards\\RewardCatalog.jsx",
       "source_location": "L4",
       "id": "rewardcatalog_rewardcatalog",
-      "community": 18,
+      "community": 22,
       "norm_label": "rewardcatalog()"
     },
     {
@@ -531,7 +666,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Avatar.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_shared_avatar_jsx",
-      "community": 19,
+      "community": 23,
       "norm_label": "avatar.jsx"
     },
     {
@@ -540,7 +675,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Avatar.jsx",
       "source_location": "L3",
       "id": "avatar_avatar",
-      "community": 19,
+      "community": 23,
       "norm_label": "avatar()"
     },
     {
@@ -549,7 +684,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\EmptyState.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_shared_emptystate_jsx",
-      "community": 20,
+      "community": 24,
       "norm_label": "emptystate.jsx"
     },
     {
@@ -558,7 +693,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\EmptyState.jsx",
       "source_location": "L3",
       "id": "emptystate_emptystate",
-      "community": 20,
+      "community": 24,
       "norm_label": "emptystate()"
     },
     {
@@ -567,7 +702,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Modal.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_shared_modal_jsx",
-      "community": 21,
+      "community": 25,
       "norm_label": "modal.jsx"
     },
     {
@@ -576,7 +711,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Modal.jsx",
       "source_location": "L3",
       "id": "modal_modal",
-      "community": 21,
+      "community": 25,
       "norm_label": "modal()"
     },
     {
@@ -585,7 +720,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Skeleton.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_shared_skeleton_jsx",
-      "community": 22,
+      "community": 26,
       "norm_label": "skeleton.jsx"
     },
     {
@@ -594,7 +729,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\shared\\Skeleton.jsx",
       "source_location": "L3",
       "id": "skeleton_skeleton",
-      "community": 22,
+      "community": 26,
       "norm_label": "skeleton()"
     },
     {
@@ -621,7 +756,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\trust\\TrustScoreWidget.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_components_trust_trustscorewidget_jsx",
-      "community": 23,
+      "community": 27,
       "norm_label": "trustscorewidget.jsx"
     },
     {
@@ -630,7 +765,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\trust\\TrustScoreWidget.jsx",
       "source_location": "L3",
       "id": "trustscorewidget_trustscorewidget",
-      "community": 23,
+      "community": 27,
       "norm_label": "trustscorewidget()"
     },
     {
@@ -639,7 +774,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\config\\firebase.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_config_firebase_jsx",
-      "community": 29,
+      "community": 33,
       "norm_label": "firebase.jsx"
     },
     {
@@ -688,6 +823,24 @@
       "norm_label": "eventspage()"
     },
     {
+      "label": "FresherWaitlistPage.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\FresherWaitlistPage.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_pages_fresherwaitlistpage_jsx",
+      "community": 28,
+      "norm_label": "fresherwaitlistpage.jsx"
+    },
+    {
+      "label": "FresherWaitlistPage()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\FresherWaitlistPage.jsx",
+      "source_location": "L5",
+      "id": "fresherwaitlistpage_fresherwaitlistpage",
+      "community": 28,
+      "norm_label": "fresherwaitlistpage()"
+    },
+    {
       "label": "HomePage.jsx",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\HomePage.jsx",
@@ -718,7 +871,7 @@
       "label": "JobsPage()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\JobsPage.jsx",
-      "source_location": "L76",
+      "source_location": "L95",
       "id": "jobspage_jobspage",
       "community": 0,
       "norm_label": "jobspage()"
@@ -778,6 +931,24 @@
       "norm_label": "networkpage()"
     },
     {
+      "label": "OpportunityMarketplacePage.jsx",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\OpportunityMarketplacePage.jsx",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_pages_opportunitymarketplacepage_jsx",
+      "community": 0,
+      "norm_label": "opportunitymarketplacepage.jsx"
+    },
+    {
+      "label": "OpportunityMarketplacePage()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\OpportunityMarketplacePage.jsx",
+      "source_location": "L203",
+      "id": "opportunitymarketplacepage_opportunitymarketplacepage",
+      "community": 0,
+      "norm_label": "opportunitymarketplacepage()"
+    },
+    {
       "label": "ProfilePage.jsx",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\ProfilePage.jsx",
@@ -790,7 +961,7 @@
       "label": "ProfilePage()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\ProfilePage.jsx",
-      "source_location": "L10",
+      "source_location": "L13",
       "id": "profilepage_profilepage",
       "community": 0,
       "norm_label": "profilepage()"
@@ -891,7 +1062,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_services_firestoreservice_jsx",
-      "community": 1,
+      "community": 2,
       "norm_label": "firestoreservice.jsx"
     },
     {
@@ -900,7 +1071,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L9",
       "id": "firestoreservice_getuser",
-      "community": 1,
+      "community": 2,
       "norm_label": "getuser()"
     },
     {
@@ -909,7 +1080,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L14",
       "id": "firestoreservice_updateuser",
-      "community": 1,
+      "community": 2,
       "norm_label": "updateuser()"
     },
     {
@@ -918,7 +1089,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L19",
       "id": "firestoreservice_getcompany",
-      "community": 1,
+      "community": 2,
       "norm_label": "getcompany()"
     },
     {
@@ -927,7 +1098,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L24",
       "id": "firestoreservice_getallcompanies",
-      "community": 1,
+      "community": 2,
       "norm_label": "getallcompanies()"
     },
     {
@@ -936,7 +1107,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L31",
       "id": "firestoreservice_createpost",
-      "community": 1,
+      "community": 2,
       "norm_label": "createpost()"
     },
     {
@@ -945,7 +1116,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L49",
       "id": "firestoreservice_getposts",
-      "community": 1,
+      "community": 2,
       "norm_label": "getposts()"
     },
     {
@@ -954,7 +1125,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L79",
       "id": "firestoreservice_recalculatetrustscore",
-      "community": 1,
+      "community": 2,
       "norm_label": "recalculatetrustscore()"
     },
     {
@@ -963,7 +1134,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L92",
       "id": "firestoreservice_likepost",
-      "community": 1,
+      "community": 2,
       "norm_label": "likepost()"
     },
     {
@@ -972,7 +1143,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L108",
       "id": "firestoreservice_checkliked",
-      "community": 1,
+      "community": 2,
       "norm_label": "checkliked()"
     },
     {
@@ -981,7 +1152,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L114",
       "id": "firestoreservice_addcomment",
-      "community": 1,
+      "community": 2,
       "norm_label": "addcomment()"
     },
     {
@@ -990,7 +1161,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L124",
       "id": "firestoreservice_getcomments",
-      "community": 1,
+      "community": 2,
       "norm_label": "getcomments()"
     },
     {
@@ -999,7 +1170,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L134",
       "id": "firestoreservice_deletepost",
-      "community": 1,
+      "community": 2,
       "norm_label": "deletepost()"
     },
     {
@@ -1008,7 +1179,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L143",
       "id": "firestoreservice_createjob",
-      "community": 1,
+      "community": 2,
       "norm_label": "createjob()"
     },
     {
@@ -1017,7 +1188,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L159",
       "id": "firestoreservice_getjobs",
-      "community": 1,
+      "community": 2,
       "norm_label": "getjobs()"
     },
     {
@@ -1026,7 +1197,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L174",
       "id": "firestoreservice_getjob",
-      "community": 1,
+      "community": 2,
       "norm_label": "getjob()"
     },
     {
@@ -1035,7 +1206,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L179",
       "id": "firestoreservice_applytojob",
-      "community": 1,
+      "community": 2,
       "norm_label": "applytojob()"
     },
     {
@@ -1044,7 +1215,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L198",
       "id": "firestoreservice_getapplications",
-      "community": 1,
+      "community": 2,
       "norm_label": "getapplications()"
     },
     {
@@ -1053,7 +1224,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L208",
       "id": "firestoreservice_getuserapplications",
-      "community": 1,
+      "community": 2,
       "norm_label": "getuserapplications()"
     },
     {
@@ -1062,7 +1233,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L219",
       "id": "firestoreservice_createevent",
-      "community": 1,
+      "community": 2,
       "norm_label": "createevent()"
     },
     {
@@ -1071,7 +1242,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L228",
       "id": "firestoreservice_getevents",
-      "community": 1,
+      "community": 2,
       "norm_label": "getevents()"
     },
     {
@@ -1080,7 +1251,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L238",
       "id": "firestoreservice_getevent",
-      "community": 1,
+      "community": 2,
       "norm_label": "getevent()"
     },
     {
@@ -1089,7 +1260,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L243",
       "id": "firestoreservice_registerforevent",
-      "community": 1,
+      "community": 2,
       "norm_label": "registerforevent()"
     },
     {
@@ -1098,7 +1269,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L259",
       "id": "firestoreservice_checkeventregistration",
-      "community": 1,
+      "community": 2,
       "norm_label": "checkeventregistration()"
     },
     {
@@ -1107,7 +1278,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L266",
       "id": "firestoreservice_sendconnectionrequest",
-      "community": 1,
+      "community": 2,
       "norm_label": "sendconnectionrequest()"
     },
     {
@@ -1116,7 +1287,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L292",
       "id": "firestoreservice_acceptconnection",
-      "community": 1,
+      "community": 2,
       "norm_label": "acceptconnection()"
     },
     {
@@ -1125,7 +1296,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L307",
       "id": "firestoreservice_rejectconnection",
-      "community": 1,
+      "community": 2,
       "norm_label": "rejectconnection()"
     },
     {
@@ -1134,7 +1305,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L316",
       "id": "firestoreservice_getconnections",
-      "community": 1,
+      "community": 2,
       "norm_label": "getconnections()"
     },
     {
@@ -1143,7 +1314,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L337",
       "id": "firestoreservice_getpendingrequests",
-      "community": 1,
+      "community": 2,
       "norm_label": "getpendingrequests()"
     },
     {
@@ -1152,7 +1323,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L347",
       "id": "firestoreservice_getallusers",
-      "community": 1,
+      "community": 2,
       "norm_label": "getallusers()"
     },
     {
@@ -1161,7 +1332,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L354",
       "id": "firestoreservice_onpostschange",
-      "community": 1,
+      "community": 2,
       "norm_label": "onpostschange()"
     },
     {
@@ -1170,7 +1341,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\firestoreService.jsx",
       "source_location": "L362",
       "id": "firestoreservice_onconnectionrequests",
-      "community": 1,
+      "community": 2,
       "norm_label": "onconnectionrequests()"
     },
     {
@@ -1179,7 +1350,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
-      "community": 2,
+      "community": 1,
       "norm_label": "realtimeservice.jsx"
     },
     {
@@ -1188,7 +1359,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L6",
       "id": "realtimeservice_getuser",
-      "community": 2,
+      "community": 1,
       "norm_label": "getuser()"
     },
     {
@@ -1197,7 +1368,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L11",
       "id": "realtimeservice_getcompany",
-      "community": 2,
+      "community": 1,
       "norm_label": "getcompany()"
     },
     {
@@ -1206,7 +1377,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L16",
       "id": "realtimeservice_updateuserprofile",
-      "community": 2,
+      "community": 1,
       "norm_label": "updateuserprofile()"
     },
     {
@@ -1215,7 +1386,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L23",
       "id": "realtimeservice_createpost",
-      "community": 2,
+      "community": 1,
       "norm_label": "createpost()"
     },
     {
@@ -1224,7 +1395,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L48",
       "id": "realtimeservice_getposts",
-      "community": 2,
+      "community": 1,
       "norm_label": "getposts()"
     },
     {
@@ -1233,7 +1404,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L109",
       "id": "realtimeservice_recalculatetrustscore",
-      "community": 2,
+      "community": 1,
       "norm_label": "recalculatetrustscore()"
     },
     {
@@ -1242,7 +1413,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L120",
       "id": "realtimeservice_getjobs",
-      "community": 2,
+      "community": 1,
       "norm_label": "getjobs()"
     },
     {
@@ -1251,7 +1422,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L131",
       "id": "realtimeservice_createjob",
-      "community": 2,
+      "community": 1,
       "norm_label": "createjob()"
     },
     {
@@ -1260,7 +1431,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L139",
       "id": "realtimeservice_getevents",
-      "community": 2,
+      "community": 1,
       "norm_label": "getevents()"
     },
     {
@@ -1269,98 +1440,233 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
       "source_location": "L152",
       "id": "realtimeservice_getconnections",
-      "community": 2,
+      "community": 1,
       "norm_label": "getconnections()"
+    },
+    {
+      "label": "getConnectionStatus()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L164",
+      "id": "realtimeservice_getconnectionstatus",
+      "community": 1,
+      "norm_label": "getconnectionstatus()"
     },
     {
       "label": "getAllUsers()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L164",
+      "source_location": "L179",
       "id": "realtimeservice_getallusers",
-      "community": 2,
+      "community": 1,
       "norm_label": "getallusers()"
     },
     {
       "label": "getPendingRequests()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L175",
+      "source_location": "L190",
       "id": "realtimeservice_getpendingrequests",
-      "community": 2,
+      "community": 1,
       "norm_label": "getpendingrequests()"
     },
     {
       "label": "sendConnectionRequest()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L187",
+      "source_location": "L202",
       "id": "realtimeservice_sendconnectionrequest",
-      "community": 2,
+      "community": 1,
       "norm_label": "sendconnectionrequest()"
     },
     {
       "label": "acceptConnection()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L209",
+      "source_location": "L224",
       "id": "realtimeservice_acceptconnection",
-      "community": 2,
+      "community": 1,
       "norm_label": "acceptconnection()"
     },
     {
       "label": "rejectConnection()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L233",
+      "source_location": "L248",
       "id": "realtimeservice_rejectconnection",
-      "community": 2,
+      "community": 1,
       "norm_label": "rejectconnection()"
     },
     {
       "label": "createEvent()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L239",
+      "source_location": "L254",
       "id": "realtimeservice_createevent",
-      "community": 2,
+      "community": 1,
       "norm_label": "createevent()"
     },
     {
       "label": "registerForEvent()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L245",
+      "source_location": "L260",
       "id": "realtimeservice_registerforevent",
-      "community": 2,
+      "community": 1,
       "norm_label": "registerforevent()"
     },
     {
       "label": "likePost()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L258",
+      "source_location": "L273",
       "id": "realtimeservice_likepost",
-      "community": 2,
+      "community": 1,
       "norm_label": "likepost()"
     },
     {
       "label": "addComment()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L279",
+      "source_location": "L294",
       "id": "realtimeservice_addcomment",
-      "community": 2,
+      "community": 1,
       "norm_label": "addcomment()"
     },
     {
       "label": "getComments()",
       "file_type": "code",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L293",
+      "source_location": "L308",
       "id": "realtimeservice_getcomments",
-      "community": 2,
+      "community": 1,
       "norm_label": "getcomments()"
+    },
+    {
+      "label": "getProjects()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L321",
+      "id": "realtimeservice_getprojects",
+      "community": 1,
+      "norm_label": "getprojects()"
+    },
+    {
+      "label": "deleteProject()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L333",
+      "id": "realtimeservice_deleteproject",
+      "community": 1,
+      "norm_label": "deleteproject()"
+    },
+    {
+      "label": "applyToJob()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L347",
+      "id": "realtimeservice_applytojob",
+      "community": 1,
+      "norm_label": "applytojob()"
+    },
+    {
+      "label": "updateApplicationStatus()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L382",
+      "id": "realtimeservice_updateapplicationstatus",
+      "community": 1,
+      "norm_label": "updateapplicationstatus()"
+    },
+    {
+      "label": "getJobApplications()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L400",
+      "id": "realtimeservice_getjobapplications",
+      "community": 1,
+      "norm_label": "getjobapplications()"
+    },
+    {
+      "label": "getUserApplications()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L414",
+      "id": "realtimeservice_getuserapplications",
+      "community": 1,
+      "norm_label": "getuserapplications()"
+    },
+    {
+      "label": "createOpportunity()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L430",
+      "id": "realtimeservice_createopportunity",
+      "community": 1,
+      "norm_label": "createopportunity()"
+    },
+    {
+      "label": "getOpportunities()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L447",
+      "id": "realtimeservice_getopportunities",
+      "community": 1,
+      "norm_label": "getopportunities()"
+    },
+    {
+      "label": "getOpportunity()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L462",
+      "id": "realtimeservice_getopportunity",
+      "community": 1,
+      "norm_label": "getopportunity()"
+    },
+    {
+      "label": "expressInterest()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L477",
+      "id": "realtimeservice_expressinterest",
+      "community": 1,
+      "norm_label": "expressinterest()"
+    },
+    {
+      "label": "updateInterestStatus()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L512",
+      "id": "realtimeservice_updateintereststatus",
+      "community": 1,
+      "norm_label": "updateintereststatus()"
+    },
+    {
+      "label": "getOpportunityInterests()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L529",
+      "id": "realtimeservice_getopportunityinterests",
+      "community": 1,
+      "norm_label": "getopportunityinterests()"
+    },
+    {
+      "label": "getUserInterests()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L546",
+      "id": "realtimeservice_getuserinterests",
+      "community": 1,
+      "norm_label": "getuserinterests()"
+    },
+    {
+      "label": "closeOpportunity()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L559",
+      "id": "realtimeservice_closeopportunity",
+      "community": 1,
+      "norm_label": "closeopportunity()"
     },
     {
       "label": "referralService.jsx",
@@ -1629,7 +1935,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L1",
       "id": "c_techvelora_nexalink_src_services_storageservice_jsx",
-      "community": 6,
+      "community": 7,
       "norm_label": "storageservice.jsx"
     },
     {
@@ -1638,7 +1944,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L4",
       "id": "storageservice_uploadfile",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadfile()"
     },
     {
@@ -1647,7 +1953,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L11",
       "id": "storageservice_uploadavatar",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadavatar()"
     },
     {
@@ -1656,7 +1962,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L15",
       "id": "storageservice_uploadpostmedia",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadpostmedia()"
     },
     {
@@ -1665,7 +1971,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L19",
       "id": "storageservice_uploadresume",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadresume()"
     },
     {
@@ -1674,7 +1980,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L23",
       "id": "storageservice_uploadcompanylogo",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadcompanylogo()"
     },
     {
@@ -1683,7 +1989,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L27",
       "id": "storageservice_uploadeventimage",
-      "community": 6,
+      "community": 7,
       "norm_label": "uploadeventimage()"
     },
     {
@@ -1692,7 +1998,7 @@
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\storageService.jsx",
       "source_location": "L31",
       "id": "storageservice_deletefile",
-      "community": 6,
+      "community": 7,
       "norm_label": "deletefile()"
     },
     {
@@ -1820,9 +2126,84 @@
       "id": "trustengine_gettrustbadgelabel",
       "community": 5,
       "norm_label": "gettrustbadgelabel()"
+    },
+    {
+      "label": "trustService.js",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L1",
+      "id": "c_techvelora_nexalink_src_services_trustservice_js",
+      "community": 8,
+      "norm_label": "trustservice.js"
+    },
+    {
+      "label": "fileToBase64()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L24",
+      "id": "trustservice_filetobase64",
+      "community": 8,
+      "norm_label": "filetobase64()"
+    },
+    {
+      "label": "uploadGovernmentId()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L34",
+      "id": "trustservice_uploadgovernmentid",
+      "community": 8,
+      "norm_label": "uploadgovernmentid()"
+    },
+    {
+      "label": "getUserVerificationDocs()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L68",
+      "id": "trustservice_getuserverificationdocs",
+      "community": 8,
+      "norm_label": "getuserverificationdocs()"
+    },
+    {
+      "label": "sendEmailOTP()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L90",
+      "id": "trustservice_sendemailotp",
+      "community": 8,
+      "norm_label": "sendemailotp()"
+    },
+    {
+      "label": "verifyEmailOTP()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L138",
+      "id": "trustservice_verifyemailotp",
+      "community": 8,
+      "norm_label": "verifyemailotp()"
+    },
+    {
+      "label": "recalculateTrustScore()",
+      "file_type": "code",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L170",
+      "id": "trustservice_recalculatetrustscore",
+      "community": 8,
+      "norm_label": "recalculatetrustscore()"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\ai-backend\\server.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_ai_backend_server_js",
+      "_tgt": "server_buildsystemprompt",
+      "source": "c_techvelora_nexalink_ai_backend_server_js",
+      "target": "server_buildsystemprompt",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -1839,7 +2220,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\backend\\main.py",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_backend_main_py",
       "_tgt": "main_root",
@@ -1992,6 +2373,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_src": "domain_post",
+      "_tgt": "projects_evaluate_project",
+      "source": "domain_post",
+      "target": "projects_evaluate_project"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\feed.py",
@@ -2013,6 +2406,90 @@
       "_tgt": "feed_get_ranked_feed",
       "source": "feed_get_ranked_feed",
       "target": "feed_rationale_10",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_backend_routers_projects_py",
+      "_tgt": "projects_run_local_evaluation",
+      "source": "c_techvelora_nexalink_backend_routers_projects_py",
+      "target": "projects_run_local_evaluation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_backend_routers_projects_py",
+      "_tgt": "projects_extract_code_from_zip",
+      "source": "c_techvelora_nexalink_backend_routers_projects_py",
+      "target": "projects_extract_code_from_zip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_backend_routers_projects_py",
+      "_tgt": "projects_evaluate_project",
+      "source": "c_techvelora_nexalink_backend_routers_projects_py",
+      "target": "projects_evaluate_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L136",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_backend_routers_projects_py",
+      "_tgt": "projects_delete_project",
+      "source": "c_techvelora_nexalink_backend_routers_projects_py",
+      "target": "projects_delete_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_src": "projects_evaluate_project",
+      "_tgt": "projects_run_local_evaluation",
+      "source": "projects_run_local_evaluation",
+      "target": "projects_evaluate_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "projects_rationale_12",
+      "_tgt": "projects_run_local_evaluation",
+      "source": "projects_run_local_evaluation",
+      "target": "projects_rationale_12",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\backend\\routers\\projects.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "projects_evaluate_project",
+      "_tgt": "projects_extract_code_from_zip",
+      "source": "projects_extract_code_from_zip",
+      "target": "projects_evaluate_project",
       "confidence_score": 1.0
     },
     {
@@ -2055,7 +2532,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_app_jsx",
       "_tgt": "app_protectedroute",
@@ -2067,7 +2544,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L52",
+      "source_location": "L54",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_app_jsx",
       "_tgt": "app_publicroute",
@@ -2079,7 +2556,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L59",
+      "source_location": "L61",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_app_jsx",
       "_tgt": "app_applayout",
@@ -2091,7 +2568,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\App.jsx",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_app_jsx",
       "_tgt": "app_app",
@@ -2127,13 +2604,25 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\assistant\\ContextualAIAssistant.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_components_assistant_contextualaiassistant_jsx",
       "_tgt": "contextualaiassistant_contextualaiassistant",
       "source": "c_techvelora_nexalink_src_components_assistant_contextualaiassistant_jsx",
       "target": "contextualaiassistant_contextualaiassistant",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\assistant\\ContextualAIAssistant.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "contextualaiassistant_contextualaiassistant",
+      "_tgt": "authcontext_useauth",
+      "source": "contextualaiassistant_contextualaiassistant",
+      "target": "authcontext_useauth"
     },
     {
       "relation": "contains",
@@ -2246,6 +2735,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\jobs\\JobDetailModal.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_components_jobs_jobdetailmodal_jsx",
+      "_tgt": "jobdetailmodal_jobdetailmodal",
+      "source": "c_techvelora_nexalink_src_components_jobs_jobdetailmodal_jsx",
+      "target": "jobdetailmodal_jobdetailmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\components\\layout\\Navbar.jsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -2302,6 +2803,54 @@
       "source": "c_techvelora_nexalink_src_components_leaderboard_leaderboardtable_jsx",
       "target": "leaderboardtable_leaderboardtable",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityCard.jsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_components_opportunities_opportunitycard_jsx",
+      "_tgt": "opportunitycard_opportunitycard",
+      "source": "c_techvelora_nexalink_src_components_opportunities_opportunitycard_jsx",
+      "target": "opportunitycard_opportunitycard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\opportunities\\OpportunityDetailModal.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_components_opportunities_opportunitydetailmodal_jsx",
+      "_tgt": "opportunitydetailmodal_opportunitydetailmodal",
+      "source": "c_techvelora_nexalink_src_components_opportunities_opportunitydetailmodal_jsx",
+      "target": "opportunitydetailmodal_opportunitydetailmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\profile\\UploadProjectModal.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_components_profile_uploadprojectmodal_jsx",
+      "_tgt": "uploadprojectmodal_uploadprojectmodal",
+      "source": "c_techvelora_nexalink_src_components_profile_uploadprojectmodal_jsx",
+      "target": "uploadprojectmodal_uploadprojectmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "C:\\TechVelora_nexalink\\src\\components\\profile\\UploadProjectModal.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "uploadprojectmodal_uploadprojectmodal",
+      "_tgt": "authcontext_useauth",
+      "source": "uploadprojectmodal_uploadprojectmodal",
+      "target": "authcontext_useauth"
     },
     {
       "relation": "contains",
@@ -2631,6 +3180,18 @@
       "relation": "calls",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\OpportunityMarketplacePage.jsx",
+      "source_location": "L156",
+      "weight": 1.0,
+      "_src": "authcontext_useauth",
+      "_tgt": "opportunitymarketplacepage_opportunitymarketplacepage",
+      "source": "authcontext_useauth",
+      "target": "opportunitymarketplacepage_opportunitymarketplacepage"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\ProfilePage.jsx",
       "source_location": "L11",
       "weight": 1.0,
@@ -2714,6 +3275,18 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\FresherWaitlistPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_pages_fresherwaitlistpage_jsx",
+      "_tgt": "fresherwaitlistpage_fresherwaitlistpage",
+      "source": "c_techvelora_nexalink_src_pages_fresherwaitlistpage_jsx",
+      "target": "fresherwaitlistpage_fresherwaitlistpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\HomePage.jsx",
       "source_location": "L96",
       "weight": 1.0,
@@ -2727,7 +3300,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\JobsPage.jsx",
-      "source_location": "L76",
+      "source_location": "L95",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_pages_jobspage_jsx",
       "_tgt": "jobspage_jobspage",
@@ -2786,8 +3359,20 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\pages\\OpportunityMarketplacePage.jsx",
+      "source_location": "L203",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_pages_opportunitymarketplacepage_jsx",
+      "_tgt": "opportunitymarketplacepage_opportunitymarketplacepage",
+      "source": "c_techvelora_nexalink_src_pages_opportunitymarketplacepage_jsx",
+      "target": "opportunitymarketplacepage_opportunitymarketplacepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\pages\\ProfilePage.jsx",
-      "source_location": "L10",
+      "source_location": "L13",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_pages_profilepage_jsx",
       "_tgt": "profilepage_profilepage",
@@ -3378,6 +3963,18 @@
       "source_location": "L164",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getconnectionstatus",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getconnectionstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L179",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_getallusers",
       "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "target": "realtimeservice_getallusers",
@@ -3387,7 +3984,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L175",
+      "source_location": "L190",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_getpendingrequests",
@@ -3399,7 +3996,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L187",
+      "source_location": "L202",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_sendconnectionrequest",
@@ -3411,7 +4008,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L209",
+      "source_location": "L224",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_acceptconnection",
@@ -3423,7 +4020,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L233",
+      "source_location": "L248",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_rejectconnection",
@@ -3435,7 +4032,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L239",
+      "source_location": "L254",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_createevent",
@@ -3447,7 +4044,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L245",
+      "source_location": "L260",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_registerforevent",
@@ -3459,7 +4056,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L258",
+      "source_location": "L273",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_likepost",
@@ -3471,7 +4068,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L279",
+      "source_location": "L294",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_addcomment",
@@ -3483,12 +4080,180 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L293",
+      "source_location": "L308",
       "weight": 1.0,
       "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "_tgt": "realtimeservice_getcomments",
       "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
       "target": "realtimeservice_getcomments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L321",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getprojects",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L333",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_deleteproject",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_deleteproject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L347",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_applytojob",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_applytojob",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L382",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_updateapplicationstatus",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_updateapplicationstatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L400",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getjobapplications",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getjobapplications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L414",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getuserapplications",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getuserapplications",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L430",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_createopportunity",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_createopportunity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L447",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getopportunities",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getopportunities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L462",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getopportunity",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getopportunity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L477",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_expressinterest",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_expressinterest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L512",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_updateintereststatus",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_updateintereststatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L529",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getopportunityinterests",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getopportunityinterests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L546",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_getuserinterests",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_getuserinterests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
+      "source_location": "L559",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "_tgt": "realtimeservice_closeopportunity",
+      "source": "c_techvelora_nexalink_src_services_realtimeservice_jsx",
+      "target": "realtimeservice_closeopportunity",
       "confidence_score": 1.0
     },
     {
@@ -3507,7 +4272,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "C:\\TechVelora_nexalink\\src\\services\\realtimeService.jsx",
-      "source_location": "L180",
+      "source_location": "L195",
       "weight": 1.0,
       "_src": "realtimeservice_getpendingrequests",
       "_tgt": "realtimeservice_getuser",
@@ -4461,6 +5226,126 @@
       "_tgt": "trustengine_calculateconsistency",
       "source": "trustengine_calculateconsistency",
       "target": "trustengine_calculatetrustscore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_filetobase64",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_filetobase64",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_uploadgovernmentid",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_uploadgovernmentid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_getuserverificationdocs",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_getuserverificationdocs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_sendemailotp",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_sendemailotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L138",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_verifyemailotp",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_verifyemailotp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L170",
+      "weight": 1.0,
+      "_src": "c_techvelora_nexalink_src_services_trustservice_js",
+      "_tgt": "trustservice_recalculatetrustscore",
+      "source": "c_techvelora_nexalink_src_services_trustservice_js",
+      "target": "trustservice_recalculatetrustscore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "trustservice_uploadgovernmentid",
+      "_tgt": "trustservice_filetobase64",
+      "source": "trustservice_filetobase64",
+      "target": "trustservice_uploadgovernmentid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "trustservice_uploadgovernmentid",
+      "_tgt": "trustservice_recalculatetrustscore",
+      "source": "trustservice_uploadgovernmentid",
+      "target": "trustservice_recalculatetrustscore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L179",
+      "weight": 1.0,
+      "_src": "trustservice_recalculatetrustscore",
+      "_tgt": "trustservice_getuserverificationdocs",
+      "source": "trustservice_getuserverificationdocs",
+      "target": "trustservice_recalculatetrustscore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "C:\\TechVelora_nexalink\\src\\services\\trustService.js",
+      "source_location": "L163",
+      "weight": 1.0,
+      "_src": "trustservice_verifyemailotp",
+      "_tgt": "trustservice_recalculatetrustscore",
+      "source": "trustservice_verifyemailotp",
+      "target": "trustservice_recalculatetrustscore",
       "confidence_score": 1.0
     }
   ],
